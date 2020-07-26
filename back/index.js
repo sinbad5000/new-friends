@@ -40,4 +40,4 @@ app.use("/api/users", users)
 
 //start server
 
-app.listen(process.env.PORT || 3001, () => console.log(`server is running on ${process.env.PORT}`))
+app.listen(process.env.PORT || 3000, () => console.log(`server is running on ${process.env.PORT}`))

@@ -6,6 +6,8 @@ import Welcome from './Welcome'
 import Main from './Main'
 import Request from './Request'
 import Friends from './Friends'
+import Login from "./content/components/Login"
+import Signup from "./content/components/Signup"
 
 function App() {
 
@@ -28,6 +30,8 @@ function App() {
           <Link to="/Profile">Profile</Link>
           <Link to="/Requests">Request</Link>
           <Link to="/Friends">Friends</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/Signup">Sign Up</Link>
         </nav>
       </div>
       <div className="App">
@@ -37,9 +41,12 @@ function App() {
         <Route path="/Main" render={() => <Main picture={data} />} />  
         <Route path="/Requests" component={Request} /> 
         <Route path="/Friends" component={Friends} />
+        <Route path="/Signup" component={Signup} />
+        <Route path="/Login" component={Login} />
       </div>
     </Router>
   );
 }
+
 
 export default App;
