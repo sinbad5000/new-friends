@@ -7,10 +7,32 @@ const jwt = require("jsonwebtoken")
 const passport = require("passport")
 //load user model
 const User = require("../../models/User")
+//load category model
+const Category = require("../../models/Category")
 
+//test categories
+router.get("/test/categories", function (req, res) {
+    res.json({ msg: "categories is working"})
+})
+
+router.post("/test/categories", function (req, res) {
+    const newCategory = new Category({
+        name: req.body.name
+    })
+
+    newCategory.save()
+        .then(category => res.json(category))
+        .catch(err => console.log(err))
+})
+
+
+
+
+// test users
 router.get("/test", function (req, res) {
     res.json({ msg: "Users endpoint working" })
 })
+
 
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {
