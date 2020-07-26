@@ -21,6 +21,33 @@ const UserSchema = new Schema({
       type: Date,
       default: Date.now
     },
+    location: {
+    type: String,
+    default: ""
+    },
+    gender: {
+    type: String,
+    default: ""
+    },
+    languages: {
+    type: String,
+    default: ""
+    },
+    smoke: {
+    type: String,
+    default: ""
+    },
+    drink: {
+    type: String,
+    default: ""
+    },
+    religion: {
+    type: String,
+    default: ""
+    },
+    category: {
+    type: String
+    }
   });
 
   module.exports = User = mongoose.model("users", UserSchema) 
