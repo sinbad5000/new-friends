@@ -21,6 +21,22 @@ const UserSchema = new Schema({
       type: Date,
       default: Date.now
     },
+    //TODO: figure out the rest of these entry dataTypes later
+    gender: {
+      type: String,
+    },
+    smoke: {
+      type: String
+    },
+    drink: {
+      type: String
+    },
+    religion: {
+      type: String
+    },
+    language: {
+      type: String
+    }
   });
 
   module.exports = User = mongoose.model("users", UserSchema) 
