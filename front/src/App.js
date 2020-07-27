@@ -1,21 +1,23 @@
 import React from 'react';
 import {BrowserRouter as Router,Route, Link} from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Profile from './Profile'
 import Welcome from './Welcome'
 import Main from './Main'
 import Request from './Request'
-import Friends from './Friends'
+import Friends from './Friends' 
+import Navbar from './content/components/Navbar'
+import FriendsCarousel from './content/components/FriendsCarousel';
+
 
 function App() {
 
 
-
-
   const data = {
           imgUrl: "http://placekitten.com/300/200", 
-          name: "This is a great website ! " ,
-          phone:"This is some content for the blog and we really like it. Please like or share us on Facebook and Instagram",
+          name: "Luke Myers! " ,
+          phone:"Looking for friends that like computers. I am a new software engineer and like friends that can code !",
           date: "July 17th, 2020",
   }
 
@@ -23,20 +25,21 @@ function App() {
     <Router>
       <div>
         <nav>
-          <Link to="/">Welcome </Link>
+          {/* <Link to="/">Welcome </Link>
           <Link to="/Main">Main</Link>
           <Link to="/Profile">Profile</Link>
-          <Link to="/Requests">Request</Link>
-          <Link to="/Friends">Friends</Link>
-        </nav>
+          <Link to="/Requests">Request</Link> */}
+          <Link to="/Friends">Friends</Link> 
+          <Navbar />
+        </nav> 
       </div>
       <div className="App">
         <Route exact path="/" component={Welcome} />
-        <Route path="/Main" component={Main} />
+        {/* <Route path="/Main" component={Main} /> */}
         <Route path="/Profile" component={Profile} />
-        <Route path="/Main" render={() => <Main picture={data} />} />  
+        <Route path="/Main" render={() => <Main blog={data} />} />  
         <Route path="/Requests" component={Request} /> 
-        <Route path="/Friends" component={Friends} />
+        <Route path="/Friends" render={() => <Friends blog={data} />} /> 
       </div>
     </Router>
   );

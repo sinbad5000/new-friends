@@ -23,20 +23,31 @@ const UserSchema = new Schema({
       type: Date,
       default: Date.now
     },
-    //TODO: figure out the rest of these entry dataTypes later
+    location: {
+      type: String,
+    default: ""
+    },
     gender: {
       type: String,
+    default: ""
+    },
+    languages: {
+      type: String,
+    default: ""
     },
     smoke: {
-      type: String
+      type: String,
+    default: ""
     },
     drink: {
-      type: String
+      type: String,
+    default: ""
     },
     religion: {
-      type: String
+      type: String,
+    default: ""
     },
-    language: {
+    category: {
       type: String
     }
   });
