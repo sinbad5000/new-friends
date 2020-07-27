@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-  
-import React from 'react';
+  import React from 'react';
 
 const FriendCarousel = () => {
   return (
@@ -11,14 +9,3 @@ const FriendCarousel = () => {
 }
 
 export default FriendCarousel;
-=======
-import React from "react"
-
-export default function FriendsCarousel() {
-    return (
-        <>
-            <h1>FriendsCarousel</h1>
-        </>
-    )
-}
->>>>>>> master
