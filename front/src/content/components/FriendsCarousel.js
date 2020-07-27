@@ -1,9 +1,31 @@
-import React from "react"
+import React from 'react'
 
-export default function FriendsCarousel() {
+
+
+
+
+
+
+const FriendsCarousel = (props) => {
     return (
-        <>
-            <h1>FriendsCarousel</h1>
-        </>
-    )
-}
+        <div>
+           <section className="mainboxouter">
+               
+                 <div id="mainbox">
+                    <img id="manyfriends" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
+                </div>
+                <div id="mainbox">
+                    <img id="manyfriends" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
+                </div>
+                <div id="mainbox">
+                    <img id="manyfriends" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
+                </div>
+                <div id="mainbox">
+                    <img id="manyfriends" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
+                </div>
+            </section>   
+        </div>
+    );
+};
+
+export default FriendsCarousel;
