@@ -21,7 +21,9 @@ app.use(bodyParser.json())
 
 const db = process.env.MONGODB_URI
 
+
 mongoose.connect(db).then((()=>console.log(`MongoDB connected... ${process.env.MONGODB_URI}`))).catch(err => console.log(err))
+
 
 app.get("/", function(req, res){
     res.send("hello, World!\nServer is up and running")

@@ -1,5 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
+const friends = require("mongoose-friends")
+
 
 const UserSchema = new Schema({
     name: {
@@ -22,32 +24,33 @@ const UserSchema = new Schema({
       default: Date.now
     },
     location: {
-    type: String,
+      type: String,
     default: ""
     },
     gender: {
-    type: String,
+      type: String,
     default: ""
     },
     languages: {
-    type: String,
+      type: String,
     default: ""
     },
     smoke: {
-    type: String,
+      type: String,
     default: ""
     },
     drink: {
-    type: String,
+      type: String,
     default: ""
     },
     religion: {
-    type: String,
+      type: String,
     default: ""
     },
     category: {
-    type: String
+      type: String
     }
   });
 
-  module.exports = User = mongoose.model("users", UserSchema) 
+UserSchema.plugin(friends())
+module.exports = User = mongoose.model("users", UserSchema) 
