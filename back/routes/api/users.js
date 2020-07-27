@@ -12,6 +12,9 @@ const Category = require("../../models/Category")
 
 
 
+//TODO: organize routes using 'controllers'
+//FIXME: change test routes to actual routes
+
 
 // test users
 router.get("/test", function (req, res) {
