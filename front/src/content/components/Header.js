@@ -1,3 +1,4 @@
+<<<<<<< HEAD
   
 import React from 'react';
 
@@ -10,3 +11,14 @@ const Header = () => {
 }
 
 export default Header;
+=======
+import React from "react"
+
+export default function Header() {
+    return (
+        <>
+            <h1>Header</h1>
+        </>
+    )
+}
+>>>>>>> master

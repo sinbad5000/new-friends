@@ -1,3 +1,4 @@
+<<<<<<< HEAD
   
 import React from 'react';
 
@@ -10,3 +11,14 @@ const UserCard = () => {
 }
 
 export default UserCard;
+=======
+import React from "react"
+
+export default function UserCard() {
+    return (
+        <>
+            <h1>UserCard</h1>
+        </>
+    )
+}
+>>>>>>> master

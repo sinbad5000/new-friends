@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -28,3 +29,14 @@ const Profile = (props) => {
 }
 
 export default Profile;
+=======
+import React from "react"
+
+export default function Profile() {
+    return (
+        <>
+            <h1>Profile</h1>
+        </>
+    )
+}
+>>>>>>> master
