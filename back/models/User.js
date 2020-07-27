@@ -1,5 +1,6 @@
-const mongoose = require("mongoose")
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const friends = require("mongoose-friends");
+const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     name: {
@@ -24,6 +25,10 @@ const UserSchema = new Schema({
     location: {
     type: String,
     default: ""
+    },
+    about: {
+      type: String,
+      default: "I need to write about myself."
     },
     gender: {
     type: String,
@@ -50,4 +55,6 @@ const UserSchema = new Schema({
     }
   });
 
-  module.exports = User = mongoose.model("users", UserSchema) 
+  UserSchema.plugin(friends())
+
+  module.exports = User = mongoose.model("users", UserSchema);

@@ -9,8 +9,23 @@ const passport = require("passport")
 const User = require("../../models/User")
 
 router.get("/test", function (req, res) {
-    res.json({ msg: "Users endpoint working" })
+    User.find(
+        {},
+    ).then( results => {
+        res.json(results)
+    })    
 })
+
+// GET friends test route
+router.get("/test/friends", function (req, res) {
+    User.getFriends(req.body.user, function (err, friendships) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(friendships)
+        }
+    })
+} )
 
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {
@@ -62,5 +77,43 @@ router.post("/login", function (req, res) {
         })
     })
 })
+
+//test friend request
+//add a friend
+router.post('/friendrequest', function (req, res) {
+    User.requestFriend(req.body.userA, req.body.userB, function(err) { 
+        if(err){
+            console.log(err)
+        } else {
+            res.redirect('/api/users/test')
+        }
+    })
+})
+//show friend
+router.get('/friendrequest/:userId', function (req, res) {
+    User.find(
+        {}, function(err, allUsers) {
+            if (err) {
+                console.log(err)
+            } else {
+                User.findById(req.params.userId, function(err, foundUser) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        User.getFriends(foundUser, function (err, friendships) {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                res.json(friendships)
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    )
+})
+
+
 
 module.exports = router 
