@@ -7,10 +7,26 @@ const jwt = require("jsonwebtoken")
 const passport = require("passport")
 //load user model
 const User = require("../../models/User")
+//load category model
+const Category = require("../../models/Category")
 
+
+
+//TODO: organize routes using 'controllers'
+//FIXME: change test routes to actual routes
+
+
+// test users
 router.get("/test", function (req, res) {
-    res.json({ msg: "Users endpoint working" })
+    User.find(
+        {},
+    ).then( results => {
+        res.json(results)
+    })
+    // res.json({ msg: "Users endpoint working" })
+    
 })
+
 
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {
@@ -62,5 +78,58 @@ router.post("/login", function (req, res) {
         })
     })
 })
+
+//test friend request
+//add a friend
+router.post('/friendrequest', function (req, res) {
+    User.requestFriend(req.body.userA, req.body.userB, function(err) { 
+        if(err){
+            console.log(err)
+        } else {
+            res.redirect('/api/users/test')
+        }
+    })
+})
+//show friend
+router.get('/friendrequest/:userId', function (req, res) {
+    User.find(
+        {}, function(err, allUsers) {
+            if (err) {
+                console.log(err)
+            } else {
+                User.findById(req.params.userId, function(err, foundUser) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        User.getFriends(foundUser, function (err, friendships) {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                res.json(friendships)
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    )
+})
+
+
+//test categories
+router.get("/test/categories", function (req, res) {
+    res.json({ msg: "categories is working"})
+})
+
+router.post("/test/categories", function (req, res) {
+    const newCategory = new Category({
+        name: req.body.name
+    })
+
+    newCategory.save()
+        .then(category => res.json(category))
+        .catch(err => console.log(err))
+})
+
 
 module.exports = router 

@@ -21,7 +21,13 @@ app.use(bodyParser.json())
 
 const db = process.env.MONGODB_URI
 
+<<<<<<< HEAD
 mongoose.connect( db, {useNewUrlParser: true} ).then((()=>console.log("Mongo is running"))).catch(err => console.log(err))
+=======
+
+mongoose.connect(db).then((()=>console.log(`MongoDB connected... ${process.env.MONGODB_URI}`))).catch(err => console.log(err))
+>>>>>>> 4c252d6080c852f88f09cdc7a5161cb9981dea06
+
 
 app.get("/", function(req, res){
     res.send("hello, World!\nServer is up and running")
