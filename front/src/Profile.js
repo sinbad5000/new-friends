@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 const Profile = (props) => {
     console.log('💥')
     console.log(props)
@@ -22,7 +23,19 @@ const Profile = (props) => {
 
       return (
         <div>
-          {props.user ? userData : errorDiv() }
+        {/* //     <h2>User Profile Card</h2>
+        //     <div class="card">
+        //       <img src="https://i.imgur.com/HS3dlA3.jpg" alt="John" style="width:100%" />
+        //       <h1>John Doe</h1>
+        //       <p class="title">CEO & Founder, Example</p>
+        //       <p>Harvard University</p>
+        //       <div >
+                
+        //     </div>
+        //     <p><button>Contact</button></p>
+        // </div> */}
+
+           {props.user ? userData : errorDiv() } 
         </div>
       )
 }

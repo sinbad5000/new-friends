@@ -9,6 +9,9 @@ import Request from './Request'
 import Friends from './Friends' 
 import Navbar from './content/components/Navbar'
 import FriendsCarousel from './content/components/FriendsCarousel';
+import Signup from './content/components/Signup'
+import Login from './content/components/Login' 
+
 
 
 function App() {
@@ -29,7 +32,7 @@ function App() {
           <Link to="/Main">Main</Link>
           <Link to="/Profile">Profile</Link>
           <Link to="/Requests">Request</Link> */}
-          <Link to="/Friends">Friends</Link> 
+          {/* <Link to="/Friends">Friends</Link>  */}
           <Navbar />
         </nav> 
       </div>
@@ -38,8 +41,10 @@ function App() {
         {/* <Route path="/Main" component={Main} /> */}
         <Route path="/Profile" component={Profile} />
         <Route path="/Main" render={() => <Main blog={data} />} />  
-        <Route path="/Requests" component={Request} /> 
+        <Route path="/Request" render={() => <Request blog={data} />} /> 
         <Route path="/Friends" render={() => <Friends blog={data} />} /> 
+        <Route path="/Signup" component={Signup} /> 
+        <Route path="/Login" component={Login} /> 
       </div>
     </Router>
   );

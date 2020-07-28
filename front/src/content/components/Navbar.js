@@ -16,8 +16,15 @@ const Navbar = (props) => {
                             <NavLink className="nav-link"  to='/Request'>Request</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link"  to='/Freinds'>Friends</NavLink>
+                            <NavLink className="nav-link"  to='/Friends'>Friends</NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link"  to='/Login'>Login</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link"  to='/Signup'>Sign up</NavLink>
+                        </li>
+
                         <li>
                         <NavLink className="nav-link" to='/Main'> Main</NavLink>
                         </li>
