@@ -47,9 +47,10 @@ const UserSchema = new Schema({
       type: String,
     default: ""
     },
-    category: {
-      type: String
-    }
+    categories: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category'
+    }]
   });
 
 UserSchema.plugin(friends())

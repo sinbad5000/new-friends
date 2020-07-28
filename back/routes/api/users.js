@@ -23,6 +23,23 @@ router.get("/test", function (req, res) {
     ).then( results => {
         res.json(results)
     })
+
+    // User.find(
+    //     {},
+    //     function(err, foundUsers) {
+    //         if (err) {
+    //             console.log("error in user test route", err)
+    //         } else {
+    //             User.getFriends(foundUsers, function (err, friendships) {
+    //                 if (err) {
+    //                     console.log("error in get friends test route", err)
+    //                 } else {
+    //                     res.json(friendships)
+    //                 }
+    //             })
+    //         }
+    //     }) 
+    // )
     // res.json({ msg: "Users endpoint working" })
     
 })

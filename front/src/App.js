@@ -8,7 +8,6 @@ import Main from './Main'
 import Request from './Request'
 import Friends from './Friends' 
 import Navbar from './content/components/Navbar'
-import FriendsCarousel from './content/components/FriendsCarousel';
 
 
 function App() {
