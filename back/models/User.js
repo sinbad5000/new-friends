@@ -23,8 +23,16 @@ const UserSchema = new Schema({
       type: Date,
       default: Date.now
     },
+    age: {
+      type: String,
+      default: ""
+    },
     location: {
       type: String,
+    default: ""
+    },
+    about: {
+      type: Text,
     default: ""
     },
     gender: {

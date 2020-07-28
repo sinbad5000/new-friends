@@ -5,24 +5,21 @@ import Login from './content/components/Login'
 
 const welcome = () => {
     return (
-        <div id="welcome">
-                    <header id="welcomeHeader">
-                        {/* <h1>New Friends</h1> */}
-                        <Login />
-                    </header> 
-                  <div id="signup">
-                        <Signup />
-
-                            <img id="welcomepic" src="https://i.imgur.com/DfR7vek.jpg" alt=" color heads"/>
-
-                        </div>
+        <div>
+           
+                {/* <img src="https://i.imgur.com/DfR7vek.jpg" alt="many colors art style logo with 4 heads"/> */}
             
-            </div>  
-        
-        
-    );
-}
+           <div>
+            <video autoPlay muted loop id="bgvid" >
+                <source src="public/Blue_Bokeh_Background.mp4" type="video/mp4" />
+            </video>
+            </div>   
+                
+            
 
+        </div>
+    );
+};
 
 
 

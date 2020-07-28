@@ -43,19 +43,30 @@ code {
 .signup {
   padding: 50px;
   background-color: lightgreen;
-  background-image: url(https://wallpaperplay.com/walls/full/a/a/b/277863.jpg);
+  background-image: url();
   background-repeat:  no-repeat;
   background-size: cover ;
   width: 100%;
   }
 
+.signupSigninBackground {
+  background-image: url("https://lh3.googleusercontent.com/proxy/Mg7n94pLV21iS6QE4lu6PVEMFr2_-Dfkc4OBFJ4bqKTlgbNKBNBosdo2-WcBi-6axbuOYCGYodli-KUXPdCmC9bkylRY3F2sVLgc0XnKO_igLt9MubdBB855AyzODpJj3lxgH4lMV_sL5EdzzJlI7eZWemxtRgE2aA");
+  width: 100vw;
+  height: 100vh; 
+  position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
 
 #form {
+  margin: 0 auto;
   height: 600px;
   width: 1000px;
-  position: relative;
-  left:50%;
-  padding: 30px;
+  position: relative;;
+  justify-content: center;
+  padding: 25px;
   
 }
 
@@ -192,3 +203,14 @@ justify-content: center;
 
 }
 
+#bgvid {
+  /* object-fit: cover; */
+  /* height: 400px;
+  width: 300px; */
+  width: 100vw;
+  height: 100vh; 
+  position: relative;
+  background-color: lightblue;
+   top: 0;
+  left: 0; 
+}

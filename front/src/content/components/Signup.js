@@ -34,7 +34,7 @@ const Signup = () => {
         password: password,
       }
 
-  axios.post('http://localhost:3000/api/users/register', newUser)
+  axios.post(`${process.env.REACT_APP_API}/api/users/register`, newUser)
         // .then(res => console.log(res.data))
     .then(res => {
       setRedirect(true)
@@ -47,6 +47,7 @@ const Signup = () => {
 
 
     return (
+    <div className="signupSigninBackground">
     <div id="form">
       <div className="row mt-4">
         <div className="col-md-7 offset-md-3">
@@ -76,6 +77,7 @@ const Signup = () => {
         </div>
       </div>
       </div>
+    </div>
     )
 }
 
