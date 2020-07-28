@@ -27,6 +27,16 @@ router.get("/test/friends", function (req, res) {
     })
 } )
 
+router.get("/test/removefriend", function (req, res) {
+    User.removeFriend(req.body.userA, req.body.userB, function(err) {
+        if (err) { 
+            console.log(err);
+        } else {
+            res.json(req.body.userA)
+        }
+    })
+})
+
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {
 
@@ -114,6 +124,20 @@ router.get('/friendrequest/:userId', function (req, res) {
     )
 })
 
+//test categories
+router.get("/test/categories", function (req, res) {
+    res.json({ msg: "categories is working"})
+})
+
+router.post("/test/categories", function (req, res) {
+    const newCategory = new Category({
+        name: req.body.name
+    })
+
+    newCategory.save()
+        .then(category => res.json(category))
+        .catch(err => console.log(err))
+})
 
 
 module.exports = router 
