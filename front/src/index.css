@@ -186,5 +186,9 @@ h1 {
   
 } 
 
+#profileCard {
+display: flex;
+justify-content: center;
 
+}
 
