@@ -1,9 +1,8 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 // import {BrowserRouter as Router,Route, Link} from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import Friends from './Friends' 
-import Request from './Request'
+import Request from './content/components/Request'
 import Profile from'./content/components/Profile'
 
 const Main = (props) => {
@@ -14,14 +13,7 @@ const Main = (props) => {
    
            
         <section className="mainBtnRow">
-                <Button className="btn" variant="primary">Profile<NavLink to="/Requests"></NavLink></Button>
-                <Button className="btn" variant="primary">Request<NavLink to="/Request"></NavLink></Button>
-                <Button className="btn" variant="primary">Friends<NavLink to="/Friends"></NavLink></Button>
-            <div>
-            {/* <Route path="/Profile" component={Profile} />
-            <Route path="/Requests" component={Request} /> 
-            <Route path="/Friends" component={Friends} /> */}
-            </div> 
+
         </section >
     
           

@@ -1,18 +1,18 @@
-import React from 'react';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './content/utils/setAuthToken';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Profile from './content/components/Profile'
 import Welcome from './Welcome'
 import Main from './Main'
-import Request from './Request'
+import Request from './content/components/Request'
 import Friends from './Friends' 
 import Navbar from './content/components/Navbar'
 import Login from './content/components/Login'
 import Signup from './content/components/Signup'
-{/*import FriendsCarousel from './content/components/FriendsCarousel'*/}
+import 'bootstrap/dist/css/bootstrap.min.css' 
+import FriendsCarousel from './content/components/FriendsCarousel'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
 
@@ -70,14 +70,7 @@ function App() {
     <Router>
       <div>
         <nav>
-          <Link to="/">Welcome </Link>
-          <Link to="/Main">Main</Link>
-          <Link to="/Profile">Profile</Link>
-          <Link to="/Requests">Request</Link> 
-          <Link to="/Friends">Friends</Link> 
-          <Link to="/Login">Login</Link> 
-          <Link to="/Signup">Signup</Link> 
-          <Navbar handleLogout={handleLogout} isAuthed={isAuthenticated}/>
+          <Navbar handleLogout={handleLogout} isAuthed={isAuthenticated}/> 
         </nav> 
       </div>
       <div className="App">

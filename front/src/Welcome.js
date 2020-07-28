@@ -6,9 +6,9 @@ const welcome = () => {
         <div>
             <h1>
                 <img src="https://i.imgur.com/DfR7vek.jpg" alt="many colors art style logo with 4 heads"/>
-            Authentication goes here ! 
+            
             </h1>
-            <Signup />
+            
             
         </div>
     );
