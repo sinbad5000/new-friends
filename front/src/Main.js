@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom'
 import Friends from './Friends' 
 import Request from './Request'
-import Profile from'./Profile'
+import Profile from'./content/components/Profile'
 
 const Main = (props) => {
     

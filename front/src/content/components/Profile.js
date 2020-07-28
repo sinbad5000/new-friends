@@ -7,7 +7,7 @@ const Profile = (props) => {
     let userData = props.user
       ? <div>
           <h1>Profile</h1>
-            <img src={props.user.avatar} alt={props.user.name} className="mb-4" />
+            {/*<img src={props.user.avatar} alt={props.user.name} className="mb-4" />*/}
             <p><strong>Name:</strong> {props.user.name}</p>
             <p><strong>email:</strong> {props.user.email}</p>
             <p><strong>ID:</strong> {props.user.id}</p>
