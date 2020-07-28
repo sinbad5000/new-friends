@@ -7,7 +7,16 @@ const jwt = require("jsonwebtoken")
 const passport = require("passport")
 //load user model
 const User = require("../../models/User")
+//load category model
+const Category = require("../../models/Category")
 
+
+
+//TODO: organize routes using 'controllers'
+//FIXME: change test routes to actual routes
+
+
+// test users
 router.get("/test", function (req, res) {
     User.find(
         {},
@@ -36,6 +45,7 @@ router.get("/test/removefriend", function (req, res) {
         }
     })
 })
+
 
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {

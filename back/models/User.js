@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
-const friends = require("mongoose-friends");
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
+const friends = require("mongoose-friends")
+
 
 const UserSchema = new Schema({
     name: {
@@ -22,8 +23,16 @@ const UserSchema = new Schema({
       type: Date,
       default: Date.now
     },
+    age: {
+      type: String,
+      default: ""
+    },
     location: {
-    type: String,
+      type: String,
+    default: ""
+    },
+    about: {
+      type: Text,
     default: ""
     },
     about: {
@@ -31,23 +40,23 @@ const UserSchema = new Schema({
       default: "I need to write about myself."
     },
     gender: {
-    type: String,
+      type: String,
     default: ""
     },
     languages: {
-    type: String,
+      type: String,
     default: ""
     },
     smoke: {
-    type: String,
+      type: String,
     default: ""
     },
     drink: {
-    type: String,
+      type: String,
     default: ""
     },
     religion: {
-    type: String,
+      type: String,
     default: ""
     },
     categories: [{
