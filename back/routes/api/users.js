@@ -27,14 +27,25 @@ router.get("/test", function (req, res) {
 
 // GET friends test route
 router.get("/test/friends", function (req, res) {
+    let friendships = {};
     User.getFriends(req.body.user, function (err, friendships) {
         if (err) {
             console.log(err);
         } else {
-            res.json(friendships)
+            res.send(friendships)
         }
     })
 } )
+
+router.post('/test/edit', function (req, res) {
+    User.findByIdAndUpdate(req.body.id, {"smoke": "Never"}, function (err, result) {
+        if(err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
 
 router.get("/test/removefriend", function (req, res) {
     User.removeFriend(req.body.userA, req.body.userB, function(err) {

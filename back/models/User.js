@@ -32,7 +32,7 @@ const UserSchema = new Schema({
     default: ""
     },
     about: {
-      type: Text,
+      type: String,
     default: ""
     },
     about: {
