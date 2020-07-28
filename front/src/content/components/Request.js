@@ -3,6 +3,7 @@ import React from 'react';
 
 const Request = (props) => {
     return (
+        <div className="newBodyBackground">
         <div>
             <section className="mainboxouter">  
             <div>
@@ -20,7 +21,7 @@ const Request = (props) => {
              <img id="addbtn" src="https://i.imgur.com/iSV3icM.jpg" />
              </div>
              </section>
-
+</div>
         </div>
     );
 };
