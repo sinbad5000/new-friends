@@ -1,5 +1,6 @@
 import React from 'react';
 // import {BrowserRouter as Router,Route, Link} from 'react-router-dom'
+import Navbar from './content/components/Navbar'
 import { NavLink } from 'react-router-dom'
 import Friends from './Friends' 
 import Request from './content/components/Request'
@@ -13,7 +14,6 @@ const Main = (props) => {
    
            
         <section className="mainBtnRow">
-
         </section >
     
           

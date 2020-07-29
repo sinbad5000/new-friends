@@ -12,7 +12,6 @@ const Navbar = (props) => {
 
                 <div className="collapse navbar-collapse" id="navbarsExample07">
                     <ul className="navbar-nav mr-auto">
-
                     </ul>
                     {
                         props.isAuthed
@@ -24,7 +23,7 @@ const Navbar = (props) => {
                                     <NavLink className="nav-link" exact to="/Main">Main</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" exact to="/Request">Requests</NavLink>
+                                    <NavLink className="nav-link" exact to="/Requests">Requests</NavLink>
                                 </li>
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to="/Friends">Friends</NavLink>
