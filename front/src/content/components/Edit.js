@@ -11,6 +11,7 @@ const Edit = (props) => {
   let [about, setAbout] = useState('')
   let [smoke, setSmoke] = useState('')
   let [drink, setDrink] = useState('')
+  let [category, setCategory] = useState("")
   let [redirect, setRedirect] = useState(false)
   
 
@@ -44,6 +45,7 @@ const Edit = (props) => {
         smoke: smoke,
         location: location,
         about: about,
+        category: category,
         id: props.user.id 
       } 
 

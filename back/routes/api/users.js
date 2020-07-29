@@ -29,19 +29,12 @@ router.get("/test", function (req, res) {
 
 
 
-// const query = { email: req.body.email };
 
 
-router.get("/current", passport.authenticate("jwt", { session: false }), (req, res) => {
-    // res.json({ msg: ‘Success’ })
-    // res.json(req.user);
+router.get("/profile", passport.authenticate("jwt", { session: false }), (req, res) => {
+
     console.log("inside profile route", req.user) 
-    res.json({
-      id: req.user.id,
-      name: req.user.name,
-      email: req.user.email,
-      avatar: req.user.avatar,
-    })
+
     User.findOne({'_id': req.user.id})
     .then( results => {
         res.json(results)
@@ -55,19 +48,6 @@ router.get("/current", passport.authenticate("jwt", { session: false }), (req, r
 
 
 
-router.get("/profile", function (req, res) {
-    console.log("inside profile route", req)
-     User.findOne({'_id': req.user.id})
-    .then( results => {
-        res.json(results)
-        console.log('It worked!')
-    }).catch( err => {
-        console.log(err)
-    }) 
-
-})
-
-
 router.put('/profile/edit', function (req, res) {
 
     console.log("inside edit body route", req.body)
@@ -79,6 +59,7 @@ router.put('/profile/edit', function (req, res) {
           "drink": req.body.drink,
           "smoke": req.body.smoke,
           "about": req.body.about,
+          "category": req.body.category
         }
       }; 
     User.findByIdAndUpdate({'_id': req.body.id}, update, function (err, result) {

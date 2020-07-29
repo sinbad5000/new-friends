@@ -7,15 +7,25 @@ const Profile = (props) => {
   console.log(props)
   console.log(props.user, "user data in profile")
   
-  let [allUsersData, setAllUsersData] = useState("")
+
+  let [smoke, setSmoke] = useState("")
+  let [drink, setDrink] = useState("")
+  let [languages, setLanguages] = useState("")
+  let [about, setAbout] = useState("")
+  let [location, setLocation] = useState("")
+  let [age, setAge] = useState("")
+  let [category, setCategory] = useState("")
+  
+
+
 
   useEffect(() => {
     let token = localStorage.getItem("jwtToken")
     console.log(token, "heloooooooo") 
      axios.get(`${process.env.REACT_APP_API}/api/users/profile`, {headers: {Authorization: `Bearer ${token}`}})
     .then ( response => {
-      console.log(response)
-      setAllUsersData(response.json())
+      console.log("here is the profile route data", response.data)
+      setSmoke(response.data.smoke)
     }).catch(err => console.log(err)) 
   }, [])
   
@@ -25,13 +35,13 @@ const Profile = (props) => {
       <img src={props.user.avatar} alt={props.user.name} className="mb-4" />
       <p><strong>Name:</strong> {props.user.name}</p>
       {/*<p><strong>email:</strong> {props.user.email}</p>*/}
-      <p><strong>Age:</strong> {props.user.age}</p>
-      <p><strong>location:</strong> {props.user.location}</p>
-      <p><strong>about:</strong> {props.user.about}</p>
-      <p><strong>languages:</strong> {props.user.languages}</p>
-      <p><strong>smoke:</strong> {props.user.smoke}</p>
-      <p><strong>drink:</strong> {props.user.drink}</p>
-      <p><strong>category:</strong> {props.user.category}</p>
+      <p><strong>Age:</strong> {age}</p>
+      <p><strong>location:</strong> {location}</p>
+      <p><strong>about:</strong> {about}</p>
+      <p><strong>languages:</strong> {languages}</p>
+      <p><strong>smoke:</strong> {smoke}</p>
+      <p><strong>drink:</strong> {drink}</p>
+      <p><strong>category:</strong> {category}</p>
     </div>
     : <h4>Loading...</h4>
 
