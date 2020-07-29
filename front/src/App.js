@@ -27,6 +27,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 function App() {
 
+
   let [currentUser, setCurrentUser] = useState("")
   let [isAuthenticated, setIsAuthenticated] = useState(true)
 
