@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 
     
-     const LikeProfile = () => {
+//      const LikeProfile = () => {
         
-        const handleClick = (e) => {
-            estop
-        }
+//         const handleClick = (e) => {
+//             estop
+//         }
        
-        let icon = isFave ? "remove_from_queue" : "add_to_queue";
-            return (
-                <div 
-                className={`film-row-fave ${icon}`}
-                onClick={handleClick}>
+//         let icon = isFave ? "remove_from_queue" : "add_to_queue";
+//             return (
+//                 <div 
+//                 className={`film-row-fave ${icon}`}
+//                 onClick={handleClick}>
 
                 
-                <p className="material-icons">{icon}</p>
+//                 <p className="material-icons">{icon}</p>
                 
                
                 
                
-            </div>
-            );
-    }
+//             </div>
+//             );
+//     }
     
 
-export default LikeProfile;
+// export default LikeProfile;

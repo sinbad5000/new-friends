@@ -1,22 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 // import {BrowserRouter as Router,Route, Link} from 'react-router-dom'
-import Navbar from './content/components/Navbar'
-import { NavLink } from 'react-router-dom'
-import Friends from './Friends' 
-import Request from './content/components/Request'
-import Profile from'./content/components/Profile'
-import LikeProfile from './content/components/LikeProfile'
+// import Navbar from './content/components/Navbar'
+// import { NavLink } from 'react-router-dom'
+// import Friends from './Friends' 
+// import Request from './content/components/Request'
+// import Profile from'./content/components/Profile'
+// import LikeProfile from './content/components/LikeProfile'
 
 
 const Main = (props) => {
     
     return ( 
-
-// Route and Functions to Add a Friend this code is in LikeProfile
-
-    
-
-
 
         <div>
    
