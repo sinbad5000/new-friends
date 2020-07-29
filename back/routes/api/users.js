@@ -9,7 +9,8 @@ const passport = require("passport")
 const User = require("../../models/User")
 //load category model
 const Category = require("../../models/Category")
-
+var mongo = require('mongodb');
+var o_id = new mongo.ObjectId("5f1f13841c014ffa2f0067ec");
 
 
 //TODO: organize routes using 'controllers'
@@ -22,6 +23,16 @@ router.get("/test", function (req, res) {
         {},
     ).then( results => {
         res.json(results)
+    })    
+})
+// find by id
+router.get("/profile", function (req, res) {
+    User.findOne({'_id': req.user._id })
+       .then( results => {
+        res.json(results)
+        console.log('It worked!')
+    }).catch( err => {
+        console.log(err)
     })    
 })
 
@@ -37,26 +48,17 @@ router.get("/test/friends", function (req, res) {
     })
 } )
 
+
+
 router.post('/test/edit', function (req, res) {
-    User.findByIdAndUpdate(req.body.id, {"smoke": "Never"}, function (err, result) {
+    User.findByIdAndUpdate(req.body.id, {"smoke": "Only the green"}, function (err, result) {
         if(err) {
             res.send(err)
         } else {
-            res.send(result)
+            res.redirect('/api/users/test')
         }
     })
 })
-
-router.get("/test/removefriend", function (req, res) {
-    User.removeFriend(req.body.userA, req.body.userB, function(err) {
-        if (err) { 
-            console.log(err);
-        } else {
-            res.json(req.body.userA)
-        }
-    })
-})
-
 
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {
@@ -109,6 +111,18 @@ router.post("/login", function (req, res) {
     })
 })
 
+// GET api/users/current (Private)
+router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+    // res.json({ msg: 'Success' })
+    // res.json(req.user);
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email,
+      avatar: req.user.avatar,
+    })
+  });
+
 //test friend request
 //add a friend
 router.post('/friendrequest', function (req, res) {
@@ -143,6 +157,17 @@ router.get('/friendrequest/:userId', function (req, res) {
             }
         }
     )
+})
+
+// Does not work yet
+router.get("/test/removefriend", function (req, res) {
+    User.removeFriend(req.body.userA, req.body.userB, function(err) {
+        if (err) { 
+            console.log(err);
+        } else {
+            res.json(req.body.userA)
+        }
+    })
 })
 
 //test categories
