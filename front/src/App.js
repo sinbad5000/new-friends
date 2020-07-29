@@ -13,7 +13,7 @@ import Login from './content/components/Login'
 import Signup from './content/components/Signup'
 import Edit from './content/components/Edit'
 import 'bootstrap/dist/css/bootstrap.min.css' 
-import FriendsCarousel from './content/components/FriendsCarousel'
+
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
 
@@ -78,11 +78,12 @@ function App() {
         <Route exact path="/" component={Welcome} />
         <PrivateRoute path='/Profile' component={ Profile } user={currentUser} />
         <Route path="/Main" render={() => <Main blog={data} />} />  
-        <Route path="/Requests" component={Request} /> 
+        <Route path="/Request" render={() => <Request blog={data} />} /> 
         <Route path="/Friends" render={() => <Friends blog={data} />} /> 
         <Route path='/Login' render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} /> } />
         <Route path="/Signup" component={Signup} /> 
-        <Route path="/Profile/Edit" component={Edit} /> 
+        <Route path="/Edit" render={() => <Edit user={currentUser} />}  /> 
+
       </div>
     </Router>
   );

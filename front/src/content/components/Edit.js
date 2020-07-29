@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect, Router } from 'react-router-dom'
 
-const Edit = () => {
+const Edit = (props) => {
   let [password, setPassword] = useState('')
   let [password2, setPassword2] = useState('')
   let [age, setAge] = useState('')
@@ -12,6 +12,7 @@ const Edit = () => {
   let [smoke, setSmoke] = useState('')
   let [drink, setDrink] = useState('')
   let [redirect, setRedirect] = useState(false)
+  
 
   let handleLanguages = (e) => {
     setLanguages(e.target.value)
@@ -31,15 +32,11 @@ const Edit = () => {
   let handleDrink = (e) => {
     setDrink(e.target.value)
   }
-  let handlePassword = (e) => {
-    setPassword(e.target.value)
-  }
-  let handlePassword2 = (e) => {
-    setPassword2(e.target.value)
-  }
+
   let handleSubmit = (e) => {
     e.preventDefault();
-    if (password === password2) {
+    console.log(props.user, "this is props")
+   
       const User = {
         languages: languages,
         age: age,
@@ -47,7 +44,7 @@ const Edit = () => {
         smoke: smoke,
         location: location,
         about: about,
-        /* id: props.user.id */
+        id: props.user.id 
       } 
 
   axios.put(`${process.env.REACT_APP_API}/api/users/profile/edit`, User)
@@ -57,7 +54,7 @@ const Edit = () => {
     })
       .catch(err => console.log(err));
     
-    }}
+    }
 
 
 
@@ -105,14 +102,6 @@ const Edit = () => {
               <div className="form-group">
                 <label htmlFor="drink">Drink</label>
                 <input type="text" name="drink" value={drink} onChange={handleDrink} className="form-control" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" value={password} onChange={handlePassword} className="form-control" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password2">Confirm Password</label>
-                <input type="password" name="password2" value={password2} onChange={handlePassword2} className="form-control" />
               </div>
               <button type="submit" className="btn btn-primary float-right">Submit</button>
             </form>
