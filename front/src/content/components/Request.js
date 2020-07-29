@@ -1,13 +1,13 @@
 import React,{ useState } from 'react';
-import LikeProfile from './content/components/LikeProfile'
+// import LikeProfile from './content/components/LikeProfile'
 
 // Code to add Friend HERE from onlick of the + BUTTON 
 
 const Request = (props) => {
-
+/* 
     const [faves, setFaves]  = useState([]);
-    const [filter, setFilter] = useState('all');
-  
+    const [filter, setFilter] = useState('all'); */
+ /*  
     const handleFilterClick = filter => {
       setFilter(filter)
   
@@ -23,13 +23,13 @@ const Request = (props) => {
         //else put in array
         newFaves =  [...newFaves, film];
       }
-       set faves (newFaves)
+        faves (newFaves)
   
     }
   
-
+ */
 // -------------------------------------------------------------
-
+/* 
 
     return (
         <div className="newBodyBackground">
@@ -48,13 +48,13 @@ const Request = (props) => {
              </div>
              <div className="mainboxouter">
 {/* Code to Add a New Friend ---------------------------------------- */}
-             <div className={`film-list-filter ${filter === 'faves' ? 'is-active' : ''}`}
+/*              <div className={`film-list-filter ${filter === 'faves' ? 'is-active' : ''}`}
            onClick={() => handleFilterClick('faves')}>
               FAVES
               <span className="section-count">0</span>
              
           </div>
-{/* Code End for Adding new Friend ----------------------------------- */}
+{/* Code End for Adding new Friend ----------------------------------- 
 
              <img id="addbtn" src="https://i.imgur.com/iSV3icM.jpg" />
              </div>
@@ -62,6 +62,6 @@ const Request = (props) => {
 </div>
         </div>
     );
-};
-
+}; 
+ */
 export default Request;

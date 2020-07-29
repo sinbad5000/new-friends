@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 
     
      const LikeProfile = () => {
@@ -24,4 +24,4 @@ import React, { useState } from 'react';
     }
     
 
-export default LikeProfile;
+export default LikeProfile; */

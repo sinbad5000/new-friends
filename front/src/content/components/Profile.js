@@ -26,6 +26,13 @@ const Profile = (props) => {
     .then ( response => {
       console.log("here is the profile route data", response.data)
       setSmoke(response.data.smoke)
+      setAbout(response.data.about)
+      setLanguages(response.data.languages)
+      setDrink(response.data.drink)
+      setAge(response.data.age)
+      setLocation(response.data.location)
+      setCategory(response.data.category)
+
     }).catch(err => console.log(err)) 
   }, [])
   
@@ -42,7 +49,9 @@ const Profile = (props) => {
       <p><strong>smoke:</strong> {smoke}</p>
       <p><strong>drink:</strong> {drink}</p>
       <p><strong>category:</strong> {category}</p>
+      <button to= "/Edit" >Edit Profile</button>
     </div>
+
     : <h4>Loading...</h4>
 
   let errorDiv = () => {
@@ -57,9 +66,7 @@ const Profile = (props) => {
         {props.user ? userData : errorDiv()}
       </div>
       <div>
-        <form>
 
-        </form>
       </div>
     </div>
   )
