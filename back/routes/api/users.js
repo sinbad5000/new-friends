@@ -60,6 +60,69 @@ router.post('/test/edit', function (req, res) {
     })
 })
 
+
+// const query = { email: req.body.email };
+
+
+router.get("/current", passport.authenticate("jwt", { session: false }), (req, res) => {
+    // res.json({ msg: ‘Success’ })
+    // res.json(req.user);
+    console.log("inside profile route", req.user) 
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email,
+      avatar: req.user.avatar,
+    })
+    
+  });
+
+
+
+
+router.get("/profile", function (req, res) {
+    console.log("inside profile route", req)
+     User.findOne({'_id': req.user.id})
+    .then( results => {
+        res.json(results)
+        console.log('It worked!')
+    }).catch( err => {
+        console.log(err)
+    }) 
+
+})
+
+
+router.put('/profile/edit', function (req, res) {
+    const update = {
+        "$push": {
+          "age": req.body.age,
+          "location": req.body.location,
+          "languages": req.body.languages,
+          "drink": req.body.drink,
+          "smoke": req.body.smoke,
+          "about": req.body.about,
+        }
+      }; 
+    User.findByIdAndUpdate(req.user.id, update, function (err, result) {
+
+        if(err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+ 
+/* router.put("/profile/edit", function (req, res) {
+    User.updateOne(query, update).then(user => {
+       results => {
+          res.json(results)
+  }})}).catch(err => console.log(err)) */ 
+/*  var mongo = require('mongodb');
+var o_id = new mongo.ObjectId("5f1f5928ee86e14d2a83d3cc"); */
+
+
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {
 
@@ -102,7 +165,7 @@ router.post("/login", function (req, res) {
             if (isMatch) {
                 const payload = { id: user.id, name: user.name, avatar: user.avatar }
                 jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
-                    res.json({ success: true, token: "bearer" + token })
+                    res.json({ success: true, token: token })
                 })
             } else {
                 return res.status(400).json({ password: "password is incorrect" })
@@ -184,6 +247,10 @@ router.post("/test/categories", function (req, res) {
         .then(category => res.json(category))
         .catch(err => console.log(err))
 })
+
+
+
+
 
 
 module.exports = router 
