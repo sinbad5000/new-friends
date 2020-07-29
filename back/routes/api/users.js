@@ -42,6 +42,13 @@ router.get("/current", passport.authenticate("jwt", { session: false }), (req, r
       email: req.user.email,
       avatar: req.user.avatar,
     })
+    User.findOne({'_id': req.user.id})
+    .then( results => {
+        res.json(results)
+        console.log('It worked!')
+    }).catch( err => {
+        console.log(err)
+    }) 
     
   });
 
@@ -62,8 +69,10 @@ router.get("/profile", function (req, res) {
 
 
 router.put('/profile/edit', function (req, res) {
+
+    console.log("inside edit body route", req.body)
     const update = {
-        "$push": {
+        "$set": {
           "age": req.body.age,
           "location": req.body.location,
           "languages": req.body.languages,
@@ -72,14 +81,14 @@ router.put('/profile/edit', function (req, res) {
           "about": req.body.about,
         }
       }; 
-    User.findByIdAndUpdate(req.user.id, update, function (err, result) {
+    User.findByIdAndUpdate({'_id': req.body.id}, update, function (err, result) {
 
         if(err) {
             res.send(err)
         } else {
             res.send(result)
         }
-    })
+    }) 
 })
  
 /* router.put("/profile/edit", function (req, res) {

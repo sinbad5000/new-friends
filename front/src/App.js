@@ -82,7 +82,8 @@ function App() {
         <Route path="/Friends" render={() => <Friends blog={data} />} /> 
         <Route path='/Login' render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} /> } />
         <Route path="/Signup" component={Signup} /> 
-        <Route path="/Profile/Edit" component={Edit} /> 
+        <Route path="/Edit" render={() => <Edit user={currentUser} />}  /> 
+
       </div>
     </Router>
   );
