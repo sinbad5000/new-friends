@@ -11,6 +11,7 @@ const Edit = () => {
   let [about, setAbout] = useState('')
   let [smoke, setSmoke] = useState('')
   let [drink, setDrink] = useState('')
+  let [redirect, setRedirect] = useState(false)
 
   let handleLanguages = (e) => {
     setLanguages(e.target.value)
@@ -36,36 +37,29 @@ const Edit = () => {
   let handlePassword2 = (e) => {
     setPassword2(e.target.value)
   }
-/*   let handleSubmit = (e) => {
+  let handleSubmit = (e) => {
     e.preventDefault();
     if (password === password2) {
       const User = {
-        language: language,
-        email: email,
+        languages: languages,
         age: age,
         drink: drink,
         smoke: smoke,
-        location: age,
-        about: about
-        
-      } */
+        location: location,
+        about: about,
+        /* id: props.user.id */
+      } 
 
-/*   axios.put(`${process.env.REACT_APP_API}/api/users/editProfile`, User)
+  axios.put(`${process.env.REACT_APP_API}/api/users/profile/edit`, User)
         // .then(res => console.log(res.data))
     .then(res => {
       setRedirect(true)
     })
       .catch(err => console.log(err));
-    }
+    
+    }}
 
-    axios.put(`${process.env.REACT_APP_API}/api/users/editProfile`, User).then(res => {
-    User.findByIdAndUpdate(req.body.id, {"smoke": "Only the green"}, function (err, result) {
-        if(err) {
-            res.send(err)
-        } else {
-            res.redirect('/api/users/test')
-        }
-    })}) */
+
 
 
 /*   router.post('/test/edit', function (req, res) {
@@ -79,7 +73,7 @@ const Edit = () => {
 }) */
 
 
- //  if (redirect) return <Redirect to="/Profile" />
+   if (redirect) return <Redirect to="/Profile" />
 
 
     return (
@@ -87,7 +81,7 @@ const Edit = () => {
         <div className="col-md-7 offset-md-3">
           <div className="card card-body">
             <h2 className="py-2">Edit Profile</h2>
-            <form action="/profile" method="post" /* onSubmit={handleSubmit} */>
+            <form action="/profile" method="post"  onSubmit={handleSubmit} >
               <div className="form-group">
                 <label htmlFor="location">Location</label>
                 <input type="text" name="location" value={location} onChange={handleLocation} className="form-control" />

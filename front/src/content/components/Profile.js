@@ -12,7 +12,7 @@ const Profile = (props) => {
   useEffect(() => {
     let token = localStorage.getItem("jwtToken")
     console.log(token, "heloooooooo") 
-     axios.get(`${process.env.REACT_APP_API}/api/users/current`, {headers: {Authorization: "Bearer " + token}})
+     axios.get(`${process.env.REACT_APP_API}/api/users/current`, {headers: {Authorization: `Bearer ${token}`}})
     .then ( response => {
       console.log(response)
       setAllUsersData(response.json())
