@@ -22,9 +22,28 @@ router.get("/test", function (req, res) {
         {},
     ).then( results => {
         res.json(results)
+    })    
+})
+
+// GET friends test route
+router.get("/test/friends", function (req, res) {
+    User.getFriends(req.body.user, function (err, friendships) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(friendships)
+        }
     })
-    // res.json({ msg: "Users endpoint working" })
-    
+} )
+
+router.get("/test/removefriend", function (req, res) {
+    User.removeFriend(req.body.userA, req.body.userB, function(err) {
+        if (err) { 
+            console.log(err);
+        } else {
+            res.json(req.body.userA)
+        }
+    })
 })
 
 
@@ -167,8 +186,6 @@ router.get('/friendrequest/:userId', function (req, res) {
         }
     )
 })
-
-// GET api/users/current (Private)
 
 
 //test categories
