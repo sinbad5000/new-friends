@@ -11,6 +11,7 @@ import Friends from './Friends'
 import Navbar from './content/components/Navbar'
 import Login from './content/components/Login'
 import Signup from './content/components/Signup'
+import Edit from './content/components/Edit'
 import 'bootstrap/dist/css/bootstrap.min.css' 
 import FriendsCarousel from './content/components/FriendsCarousel'
 
@@ -81,6 +82,7 @@ function App() {
         <Route path="/Friends" render={() => <Friends blog={data} />} /> 
         <Route path='/Login' render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} /> } />
         <Route path="/Signup" component={Signup} /> 
+        <Route path="/Profile/Edit" component={Edit} /> 
       </div>
     </Router>
   );

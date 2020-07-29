@@ -28,6 +28,56 @@ router.get("/test", function (req, res) {
 })
 
 
+
+/* const query = { email: req.body.email };
+const update = {
+  "$push": {
+    "age": req.body.age,
+    "location": req.body.location,
+    "languages": req.body.languages,
+    "drink": req.body.drink,
+    "smoke": req.body.smoke,
+    "about": req.body.about,
+  }
+}; */
+
+router.get("/current", passport.authenticate("jwt", { session: false }), (req, res) => {
+    // res.json({ msg: ‘Success’ })
+    // res.json(req.user);
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email,
+      avatar: req.user.avatar,
+    })
+    console.log("inside profile route", req.user) 
+  });
+
+
+
+
+router.get("/profile", function (req, res) {
+    console.log("inside profile route", req)
+     User.findOne({'_id': req.user.id})
+    .then( results => {
+        res.json(results)
+        console.log('It worked!')
+    }).catch( err => {
+        console.log(err)
+    }) 
+
+})
+
+/* 
+router.put("/editProfile", function (req, res) {
+    User.updateOne(query, update).then(user => {
+       results => {
+          res.json(results)
+  }})}).catch(err => console.log(err)) */
+/*  var mongo = require('mongodb');
+var o_id = new mongo.ObjectId("5f1f5928ee86e14d2a83d3cc"); */
+
+
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {
 
@@ -115,6 +165,8 @@ router.get('/friendrequest/:userId', function (req, res) {
     )
 })
 
+// GET api/users/current (Private)
+
 
 //test categories
 router.get("/test/categories", function (req, res) {
@@ -130,6 +182,10 @@ router.post("/test/categories", function (req, res) {
         .then(category => res.json(category))
         .catch(err => console.log(err))
 })
+
+
+
+
 
 
 module.exports = router 
