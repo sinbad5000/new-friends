@@ -5,6 +5,7 @@ const passport = require("passport")
 const bodyParser = require("body-parser")
 
 const app = express()
+require('dotenv').config()
 
 const users = require("./routes/api/users")
 

@@ -49,7 +49,7 @@ const Profile = (props) => {
       <p><strong>smoke:</strong> {smoke}</p>
       <p><strong>drink:</strong> {drink}</p>
       <p><strong>category:</strong> {category}</p>
-      <button to= "/Edit" >Edit Profile</button>
+      <Link to='/Edit'>Edit Profile</Link>
     </div>
 
     : <h4>Loading...</h4>

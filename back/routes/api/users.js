@@ -5,6 +5,7 @@ const gravatar = require("gravatar")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const passport = require("passport")
+require('dotenv').config()
 //load user model
 const User = require("../../models/User")
 //load category model
@@ -91,13 +92,7 @@ router.put('/profile/edit', function (req, res) {
     }) 
 })
  
-/* router.put("/profile/edit", function (req, res) {
-    User.updateOne(query, update).then(user => {
-       results => {
-          res.json(results)
-  }})}).catch(err => console.log(err)) */ 
-/*  var mongo = require('mongodb');
-var o_id = new mongo.ObjectId("5f1f5928ee86e14d2a83d3cc"); */
+
 
 
 router.post("/register", function (req, res) {
