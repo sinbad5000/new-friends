@@ -21,7 +21,7 @@ app.use(bodyParser.json())
 
 const db = process.env.MONGODB_URI
 
-mongoose.connect( db, {useNewUrlParser: true} ).then((()=>console.log("Mongo is running"))).catch(err => console.log(err))
+mongoose.connect( db, {useNewUrlParser: true} ).then((()=>console.log("Mongo is running on", process.env.MONGODB_URI))).catch(err => console.log(err))
 
 
 app.get("/", function(req, res){

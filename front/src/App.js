@@ -5,7 +5,7 @@ import setAuthToken from './content/utils/setAuthToken';
 import './App.css';
 import Profile from './content/components/Profile'
 import Welcome from './Welcome'
-import Main from './Main'
+import Main from './content/components/Main'
 import Request from './content/components/Request'
 import Friends from './Friends' 
 import Navbar from './content/components/Navbar'
@@ -13,7 +13,6 @@ import Login from './content/components/Login'
 import Signup from './content/components/Signup'
 import Edit from './content/components/Edit'
 import 'bootstrap/dist/css/bootstrap.min.css' 
-
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
 
@@ -57,8 +56,8 @@ function App() {
     }
   }
 
-  console.log('Current User = ', currentUser);
-  console.log('Authenticated = ', isAuthenticated);
+  // console.log('Current User = ', currentUser);
+  // console.log('Authenticated = ', isAuthenticated);
 
 
   const data = {

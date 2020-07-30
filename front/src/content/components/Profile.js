@@ -4,17 +4,16 @@ import axios from 'axios';
 
 const Profile = (props) => {
   console.log('💥')
-  console.log(props)
-  console.log(props.user, "user data in profile")
+  console.log("user data in profile", props.user)
   
 
-  let [smoke, setSmoke] = useState("")
-  let [drink, setDrink] = useState("")
-  let [languages, setLanguages] = useState("")
-  let [about, setAbout] = useState("")
-  let [location, setLocation] = useState("")
-  let [age, setAge] = useState("")
-  let [category, setCategory] = useState("")
+  let [smoke, setSmoke] = useState('')
+  let [drink, setDrink] = useState('')
+  let [languages, setLanguages] = useState('')
+  let [about, setAbout] = useState('')
+  let [location, setLocation] = useState('')
+  let [age, setAge] = useState('')
+  let [category, setCategory] = useState('')
   
 
 
@@ -22,7 +21,7 @@ const Profile = (props) => {
   useEffect(() => {
     let token = localStorage.getItem("jwtToken")
     console.log(token, "heloooooooo") 
-     axios.get(`${process.env.REACT_APP_API}/api/users/profile`, {headers: {Authorization: `Bearer ${token}`}})
+    axios.get(`${process.env.REACT_APP_API}/api/users/profile`, {headers: {Authorization: `Bearer ${token}`}})
     .then ( response => {
       console.log("here is the profile route data", response.data)
       setSmoke(response.data.smoke)

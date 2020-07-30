@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import ListGroup from 'react-bootstrap/ListGroup'
 
-const UserCard = () => {
+const UserCard = (props) => {
   return (
 
     <div id="profileCard">
