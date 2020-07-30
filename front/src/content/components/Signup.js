@@ -8,6 +8,7 @@ const Signup = () => {
   let [password, setPassword] = useState('')
   let [password2, setPassword2] = useState('')
   let [redirect, setRedirect] = useState(false)
+  require('dotenv').config()
 
   let handleName = (e) => {
     setName(e.target.value)

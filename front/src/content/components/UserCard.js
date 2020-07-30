@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import ListGroup from 'react-bootstrap/ListGroup'
 
-const UserCard = () => {
+const UserCard = (props) => {
   return (
 
     <div id="profileCard">
@@ -22,8 +22,8 @@ const UserCard = () => {
     <ListGroupItem>Vestibulum at eros</ListGroupItem>
   </ListGroup>
   <Card.Body>
-    <Card.Link href="#">Card Link</Card.Link>
-    <Card.Link href="#">Another Link</Card.Link>
+    {/* <Card.Link href="#">Card Link</Card.Link>
+    <Card.Link href="#">Another Link</Card.Link> */}
   </Card.Body>
 </Card>
     </div>

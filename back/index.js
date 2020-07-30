@@ -5,6 +5,7 @@ const passport = require("passport")
 const bodyParser = require("body-parser")
 
 const app = express()
+require('dotenv').config()
 
 const users = require("./routes/api/users")
 
@@ -19,9 +20,18 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 
-const db = process.env.MONGODB_URI
+const db = process.env.MONGODB_URI || process.env.MONGODB_URI2
 
-mongoose.connect( db, {useNewUrlParser: true} ).then((()=>console.log("Mongo is running"))).catch(err => console.log(err))
+
+const MongoClient = require('mongodb').MongoClient;
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+mongoose.connect( uri, {useNewUrlParser: true} ).then((()=>console.log("Mongo is running on"))).catch(err => console.log(err))
 
 
 app.get("/", function(req, res){

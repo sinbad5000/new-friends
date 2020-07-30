@@ -5,6 +5,7 @@ const gravatar = require("gravatar")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const passport = require("passport")
+require('dotenv').config()
 //load user model
 const User = require("../../models/User")
 //load category model
@@ -14,19 +15,30 @@ var mongo = require('mongodb');
 //FIXME: change test routes to actual routes
 
 
+// test route for specific user 
+router.get("/test/profile", function (req, res) {
+    User.findOne({'_id': req.user._id})
+    .then( results => {
+        res.json(results)
+        console.log('It worked!')
+    }).catch( err => {
+        console.log(err)
+    })
+})
+
 // test users
 router.get("/test", function (req, res) {
     User.find(
         {},
     ).then( results => {
         res.json(results)
-    })    
+    }).catch(err => console.log(err))   
 })
 
 // GET friends test route
 router.get("/test/friends", function (req, res) {
     let friendships = {};
-    User.getFriends(req.body.user, function (err, friendships) {
+    User.getFriends(user.id, function (err, friendships) {
         if (err) {
             console.log(err);
         } else {
@@ -143,14 +155,34 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 
 //test friend request
 //add a friend
-router.post('/friendrequest', function (req, res) {
-    User.requestFriend(req.body.userA, req.body.userB, function(err) { 
+router.post('/friendsRequests', passport.authenticate("jwt", { session: false }), function (req, res) {
+    User.requestFriend(req.user.id, req.body.userB, function(err) { 
         if(err){
             console.log(err)
         } else {
-            res.redirect('/api/users/test')
+            res.send('/api/users/test')
         }
     })
+})
+
+router.get('/friendRequests', passport.authenticate('jwt', { session: false }), function (req, res) {
+    console.log("inside request route", req.user)
+
+    User.findOne({"_id": req.user.id}, function(err, foundUser) {
+        if (err) {
+            console.log("We've got an error finding this user", err)
+        } else {
+            User.getPendingFriends(foundUser, function(err, friendship) {
+                console.log(friendships)
+                res.json(friendships)
+            })
+        }
+    })
+    .then( results => {
+        console.log("These are the results", results)
+        res.json(results)
+    })
+    
 })
 //show friend
 router.get('/friendrequest/:userId', function (req, res) {

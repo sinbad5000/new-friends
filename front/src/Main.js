@@ -1,46 +1,87 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './App.css';
+import Header from './content/components/Header';
+import Person from './content/components/Person';
+import Lonely from './content/components/Lonely';
+// import Axios from 'axios';
+// import Profile from './content/components/Profile'
+// import UserCard from './content/components/UserCard'
+import data from './data.json';
 
-const Main = (props) => {
+const Main = () => {
+  const [people, setPeople] = useState(data);
+  const [likedUsers, setLikedUsers] = useState([]);
+  const [superLikedUsers, setSuperLikedUsers] = useState([]);
+  const [dislikedUsers, setDislikedUsers] = useState([]);
+  const activeUser = 0;
 
-    // let [allUsersArray, setAllUsersArray] = useState([])
-    
-    // useEffect(async () => {
-    //     try {
-    //         const allUsers = await Axios.get('localhost:3000/api/users/test');
-    //         setUserArray(allUsers)
-    //     } catch (error) {
-    //         console.log('We have an Error !!!!!!', error)
-    //     }
-    // }, [])
+  const removedPersonFromDataSrc = (peopleSource, userId) =>
+    peopleSource.filter(user => user.id !== userId);
 
-    return ( 
+  const modifySuperficialChoices = (userId, action) => {
+    const newPeople = [...people];
+    const newLikedUsers = [...likedUsers];
+    const newSuperLikedUsers = [...superLikedUsers];
+    const newDislikedUsers = [...dislikedUsers];
 
-        <div>
-   
-           
-        <section className="mainBtnRow">
-        </section >
-    
-          
-        <section className="mainboxouter">
-            <div>
-            <img id="lessbtn" src="https://i.imgur.com/19kt8Pv.jpg"  />  
-            </div>
-            <div id="mainbox">
-            <h2> </h2>
-              <img id="mainpic" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
-                <img id="logo" src="https://i.imgur.com/i6FmYyB.jpg"/>
-                 <h3>{props.blog.name}</h3>
-              <p>{props.blog.phone}</p>
-             <p>{props.blog.date}</p>  
-             </div>
-             <div className="mainboxouter">
-             <img id="addbtn" src="https://i.imgur.com/iSV3icM.jpg" />
-             </div>
-        </section>  
-        </div>
-    )
-}
+    switch (action) {
+      case 'ADD_TO_LIKED_USERS':
+        if (!people[activeUser].likedUsers.includes(userId)) {
+          newPeople[activeUser].likedUsers.push(userId);
+          newLikedUsers.push(data[userId]);
+
+          setLikedUsers(newLikedUsers);
+          setPeople(removedPersonFromDataSrc(people, userId));
+        }
+        break;
+      case 'ADD_TO_DISLIKED_USERS':
+        if (!people[activeUser].dislikedUsers.includes(userId)) {
+          newPeople[activeUser].dislikedUsers.push(userId);
+          newDislikedUsers.push(data[userId]);
+
+          setDislikedUsers(newLikedUsers);
+          setPeople(removedPersonFromDataSrc(people, userId));
+        }
+        break;
+      case 'ADD_TO_SUPERLIKED_USERS':
+        if (!people[activeUser].superLikedUsers.includes(userId)) {
+          newPeople[activeUser].superLikedUsers.push(userId);
+          newSuperLikedUsers.push(data[userId]);
+
+          setSuperLikedUsers(newSuperLikedUsers);
+          setPeople(removedPersonFromDataSrc(people, userId));
+        }
+        break;
+      default:
+        return people;
+    }
+  };
+
+  return (
+    <div className="newBodyBackground">
+    <div className="app">
+      <Header />
+      {people[1] ? (
+        <Person
+          key={people[1].id}
+          person={people[1]}
+          modifySuperficialChoices={modifySuperficialChoices}
+          likedUsers={likedUsers}
+        />
+      ) : (
+        <Lonely
+          activeUserImage={people[activeUser].image}
+          likedUsers={likedUsers}
+          superLikedUsers={superLikedUsers}
+        />
+      )}
+    </div>
+    </div>
+  );
+};
+
+
+
 
 
 

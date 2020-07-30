@@ -24,3 +24,53 @@ OLD VIDEO PLAYER CODE
           
 
         </div>
+
+
+MAIN LOOP ITERATION -----------------
+
+        // const [userArray, setUserArray] = useState([])
+
+    // useEffect(async () => {
+    //     try {
+    //         const allUsers = await Axios.get('localhost:3000/api/users/test');
+    //         setUserArray(allUsers)
+    //     } catch (error) {
+    //         console.log('We have an Error !!!!!!', error)
+    //     }
+    // }, [])
+
+    // const mappedUser = allUsers.map( (user,index) => {
+    //     return (<div key={user._id}> <UserCard user={ user} /></div>)
+    // })
+
+
+
+    // OLD MAIN.js OLD MAIN.js CODE CODE stored -------
+
+
+
+const Main = (props) => {
+    
+    
+    return ( 
+        <div>
+            <div className="newBodyBackground">
+            <section className="mainboxouter">
+                <div>
+                     <img id="lessbtn" src="https://i.imgur.com/19kt8Pv.jpg"  />  
+                </div>
+                    <div id="mainbox">
+                    <h2> </h2>
+                    <UserCard />
+                <div className="mainboxouter">
+                    <img id="addbtn" src="https://i.imgur.com/iSV3icM.jpg" />
+                </div>
+                </div>
+               
+            </section>  
+            </div>
+        </div>
+    )
+}
+
+
