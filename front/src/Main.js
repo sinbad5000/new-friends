@@ -23,8 +23,6 @@ const Main = (props) => {
     // post to pass the data
 
     // map iteration 
-
-   
         const newFriend = props.user.length > 0 
           ? props.users.map((user, i) => (
             <li key={`user-${i}`} className="user">
