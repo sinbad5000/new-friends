@@ -14,14 +14,14 @@ const welcome = () => {
                         <span></span>
                         <span></span>
                         <span></span>
-                        <div class="content">
+                        <div className="content">
                         <h2>Welcome to: </h2>
                         <h3>New Friends</h3>
                         <h4>Login or Sign up and start making friends today. </h4>
                         </div>
                 </div>
                 </div>
-             </div> 
+            </div> 
         </section> 
     </div>
 
