@@ -8,6 +8,7 @@ const Main = (props) => {
     let [allUsersArray, setAllUsersArray] = useState([])
 
     handleClick = () => {
+        
         Axios.post(`${process.env.REACT_APP_API}/api/users/friendRequests`, )
     }
 

@@ -7,9 +7,9 @@ const jwt = require("jsonwebtoken")
 const passport = require("passport")
 require('dotenv').config()
 //load user model
-const User = require("../../models/User")
+const User = require("../../Models/User")
 //load category model
-const Category = require("../../models/Category")
+const Category = require("../../Models/Category")
 var mongo = require('mongodb');
 //TODO: organize routes using 'controllers'
 //FIXME: change test routes to actual routes
