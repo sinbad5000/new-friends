@@ -5,7 +5,7 @@ import setAuthToken from './content/utils/setAuthToken';
 import './App.css';
 import Profile from './content/components/Profile'
 import Welcome from './Welcome'
-import Main from './content/components/Main'
+import Main from './Main'
 import Request from './content/components/Request'
 import Friends from './Friends' 
 import Navbar from './content/components/Navbar'
@@ -61,11 +61,12 @@ function App() {
 
 
   const data = {
-          imgUrl: "http://placekitten.com/300/200", 
-          name: "Luke Myers! " ,
-          phone:"Looking for friends that like computers. I am a new software engineer and like friends that can code !",
-          date: "July 17th, 2020",
-  }
+    avatar: "",
+    name: "" ,
+    location:"",
+    categories: "",
+    about: ""
+}
 
   return (
     <Router>

@@ -5,6 +5,7 @@ const gravatar = require("gravatar")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const passport = require("passport")
+require('dotenv').config()
 //load user model
 const User = require("../../models/User")
 //load category model
