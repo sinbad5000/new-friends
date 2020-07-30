@@ -7,12 +7,10 @@ const jwt = require("jsonwebtoken")
 const passport = require("passport")
 require('dotenv').config()
 //load user model
-const User = require("../../models/User")
+const User = require("../../Models/User")
 //load category model
-const Category = require("../../models/Category")
-
-
-
+const Category = require("../../Models/Category")
+var mongo = require('mongodb');
 //TODO: organize routes using 'controllers'
 //FIXME: change test routes to actual routes
 
@@ -27,9 +25,6 @@ router.get("/test/profile", function (req, res) {
         console.log(err)
     })
 })
-var mongo = require('mongodb');
-var o_id = new mongo.ObjectId("5f1f5928ee86e14d2a83d3cc");
-
 
 // test users
 router.get("/test", function (req, res) {
@@ -42,27 +37,15 @@ router.get("/test", function (req, res) {
 
 // GET friends test route
 router.get("/test/friends", function (req, res) {
-    User.getFriends(req.body.user, function (err, friendships) {
+    let friendships = {};
+    User.getFriends(user.id, function (err, friendships) {
         if (err) {
             console.log(err);
         } else {
-            res.json(friendships)
+            res.send(friendships)
         }
     })
 } )
-
-router.get("/test/removefriend", function (req, res) {
-    User.removeFriend(req.body.userA, req.body.userB, function(err) {
-        if (err) { 
-            console.log(err);
-        } else {
-            res.json(req.body.userA)
-        }
-    })
-})
-
-
-
 
 
 router.get("/profile", passport.authenticate("jwt", { session: false }), (req, res) => {
@@ -106,8 +89,6 @@ router.put('/profile/edit', function (req, res) {
     }) 
 })
  
-
-
 
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {
@@ -160,16 +141,48 @@ router.post("/login", function (req, res) {
     })
 })
 
+// GET api/users/current (Private)
+router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+    // res.json({ msg: 'Success' })
+    // res.json(req.user);
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email,
+      avatar: req.user.avatar,
+    })
+  });
+
 //test friend request
 //add a friend
-router.post('/friendrequest', function (req, res) {
-    User.requestFriend(req.body.userA, req.body.userB, function(err) { 
+router.post('/friendsRequests', passport.authenticate("jwt", { session: false }), function (req, res) {
+    User.requestFriend(req.user.id, req.body.userB, function(err) { 
         if(err){
             console.log(err)
         } else {
-            res.redirect('/api/users/test')
+            res.send('/api/users/test')
         }
     })
+})
+
+router.get('/friendRequests', passport.authenticate('jwt', { session: false }), function (req, res) {
+    console.log("inside request route", req.user)
+
+    User.findOne({"_id": req.user.id}, function(err, foundUser) {
+        if (err) {
+            console.log("We've got an error finding this user", err)
+        } else {
+            User.getPendingFriends(foundUser, function(err, friendship) {
+                console.log(friendships)
+                res.json(friendships)
+            })
+        }
+    })
+    .then( results => {
+        console.log("These are the results", results)
+        res.json(results)
+    })
+    
 })
 //show friend
 router.get('/friendrequest/:userId', function (req, res) {
@@ -211,10 +224,6 @@ router.post("/test/categories", function (req, res) {
         .then(category => res.json(category))
         .catch(err => console.log(err))
 })
-
-
-
-
 
 
 module.exports = router 
