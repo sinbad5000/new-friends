@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
-const friends = require("./node_modules/mongoose-friends")
+const friends = require("mongoose-friends")
 
 const UserSchema = new Schema({
   name: {
