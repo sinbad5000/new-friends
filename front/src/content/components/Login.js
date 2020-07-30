@@ -29,6 +29,7 @@ const Login = (props) => {
         const { token } = res.data;
         // Save to LocalStorage
         localStorage.setItem('jwtToken', token);
+        console.log(token, "this should be a token")
         // Set token to Auth Header
         setAuthToken(token);
         // Decode token to get user data

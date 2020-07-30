@@ -32,8 +32,12 @@ const UserSchema = new Schema({
     default: ""
     },
     about: {
-      type: Text,
+      type: String,
     default: ""
+    },
+    about: {
+      type: String,
+      default: "I need to write about myself."
     },
     gender: {
       type: String,
@@ -55,10 +59,12 @@ const UserSchema = new Schema({
       type: String,
     default: ""
     },
-    category: {
-      type: String
-    }
+    categories: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category"
+    }]
   });
 
-UserSchema.plugin(friends())
-module.exports = User = mongoose.model("users", UserSchema) 
+  UserSchema.plugin(friends())
+
+  module.exports = User = mongoose.model("users", UserSchema);
