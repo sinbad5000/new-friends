@@ -19,9 +19,20 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 
-const db = process.env.MONGODB_URI
+// const db = process.env.MONGODB_URI || mongodb://localhost/newFriends
+const uri = process.env.MONGODB_URI
 
-mongoose.connect( db, {useNewUrlParser: true} ).then((()=>console.log("Mongo is running on", process.env.MONGODB_URI))).catch(err => console.log(err))
+
+const MongoClient = require('mongodb').MongoClient;
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+// mongoose.connect( db, {useNewUrlParser: true, useUnifiedTopology: true } ).then((()=>console.log("Mongo is running on", process.env.MONGODB_URI))).catch(err => console.log(err))
+mongoose.connect( uri, {useNewUrlParser: true, useUnifiedTopology: true } ).then((()=>console.log("Mongo is running on", process.env.MONGODB_URI))).catch(err => console.log(err))
 
 
 app.get("/", function(req, res){

@@ -39,7 +39,7 @@ const Main = (props) => {
                 </div>
                 <div id="mainbox">
                     {mappedUsers}
-                     {/* <h2> </h2>
+                    {/* <h2> </h2>
                     <img id="mainpic" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
                     <img id="logo" src="https://i.imgur.com/i6FmYyB.jpg"/>
                     <h3>{props.blog.name}</h3>

@@ -213,6 +213,49 @@ router.post("/test/categories", function (req, res) {
 
 
 
+router.get("/friendRequests", passport.authenticate("jwt", { session: false }), (req, res) => {
+
+    console.log("inside profile route", req.user) 
+
+    User.findOne({'_id': req.user.id}, function(err, foundUser) {
+        if (err) {
+            console.log("We've got an error finding this user", err)
+        } else {
+            User.getPendingFriends(foundUser, function(err, friendships) {
+                console.log(friendships)
+                res.json(friendships)
+                
+            })
+            // User.getFriends(foundUser, function(err, friendships) {
+            //     console.log(friendships)
+            //     res.json(friendships)
+            // })
+        }
+    })
+    // .then( results => {
+    //     console.log("These are the RESULTS!!!", results)
+    //     res.json(results)
+
+    //     // User.findById(req.params.userId, function(err, foundUser) {
+    //     //     if (err) {
+    //     //         console.log(err)
+    //     //     } else {
+    //     //         User.getFriends(foundUser, function (err, friendships) {
+    //     //             if (err) {
+    //     //                 console.log(err)
+    //     //             } else {
+    //     //                 res.json(friendships)
+    //     //             }
+    //     //         })
+    //     //     }
+        
+
+    // }).catch( err => {
+    //     console.log(err)
+    // }) 
+    
+});
+
 
 
 
