@@ -10,9 +10,6 @@ const User = require("../../models/User")
 //load category model
 const Category = require("../../models/Category")
 var mongo = require('mongodb');
-var o_id = new mongo.ObjectId("5f1f13841c014ffa2f0067ec");
-
-
 //TODO: organize routes using 'controllers'
 //FIXME: change test routes to actual routes
 
@@ -23,16 +20,6 @@ router.get("/test", function (req, res) {
         {},
     ).then( results => {
         res.json(results)
-    })    
-})
-// find by id
-router.get("/profile", function (req, res) {
-    User.findOne({'_id': req.user._id })
-       .then( results => {
-        res.json(results)
-        console.log('It worked!')
-    }).catch( err => {
-        console.log(err)
     })    
 })
 
@@ -49,31 +36,10 @@ router.get("/test/friends", function (req, res) {
 } )
 
 
+router.get("/profile", passport.authenticate("jwt", { session: false }), (req, res) => {
 
-router.post('/test/edit', function (req, res) {
-    User.findByIdAndUpdate(req.body.id, {"smoke": "Only the green"}, function (err, result) {
-        if(err) {
-            res.send(err)
-        } else {
-            res.redirect('/api/users/test')
-        }
-    })
-})
-
-
-// const query = { email: req.body.email };
-
-
-router.get("/current", passport.authenticate("jwt", { session: false }), (req, res) => {
-    // res.json({ msg: ‘Success’ })
-    // res.json(req.user);
     console.log("inside profile route", req.user) 
-    res.json({
-      id: req.user.id,
-      name: req.user.name,
-      email: req.user.email,
-      avatar: req.user.avatar,
-    })
+
     User.findOne({'_id': req.user.id})
     .then( results => {
         res.json(results)
@@ -87,19 +53,6 @@ router.get("/current", passport.authenticate("jwt", { session: false }), (req, r
 
 
 
-router.get("/profile", function (req, res) {
-    console.log("inside profile route", req)
-     User.findOne({'_id': req.user.id})
-    .then( results => {
-        res.json(results)
-        console.log('It worked!')
-    }).catch( err => {
-        console.log(err)
-    }) 
-
-})
-
-
 router.put('/profile/edit', function (req, res) {
 
     console.log("inside edit body route", req.body)
@@ -111,6 +64,7 @@ router.put('/profile/edit', function (req, res) {
           "drink": req.body.drink,
           "smoke": req.body.smoke,
           "about": req.body.about,
+          "category": req.body.category
         }
       }; 
     User.findByIdAndUpdate({'_id': req.body.id}, update, function (err, result) {
@@ -123,14 +77,6 @@ router.put('/profile/edit', function (req, res) {
     }) 
 })
  
-/* router.put("/profile/edit", function (req, res) {
-    User.updateOne(query, update).then(user => {
-       results => {
-          res.json(results)
-  }})}).catch(err => console.log(err)) */ 
-/*  var mongo = require('mongodb');
-var o_id = new mongo.ObjectId("5f1f5928ee86e14d2a83d3cc"); */
-
 
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {
@@ -231,19 +177,6 @@ router.get('/friendrequest/:userId', function (req, res) {
     )
 })
 
-<<<<<<< HEAD
-// Does not work yet
-router.get("/test/removefriend", function (req, res) {
-    User.removeFriend(req.body.userA, req.body.userB, function(err) {
-        if (err) { 
-            console.log(err);
-        } else {
-            res.json(req.body.userA)
-        }
-    })
-})
-=======
->>>>>>> e6b73f92311a88b6ca2272be08cae51edd91365a
 
 //test categories
 router.get("/test/categories", function (req, res) {
@@ -259,10 +192,6 @@ router.post("/test/categories", function (req, res) {
         .then(category => res.json(category))
         .catch(err => console.log(err))
 })
-
-
-
-
 
 
 module.exports = router 

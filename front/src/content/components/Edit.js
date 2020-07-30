@@ -11,6 +11,7 @@ const Edit = (props) => {
   let [about, setAbout] = useState('')
   let [smoke, setSmoke] = useState('')
   let [drink, setDrink] = useState('')
+  let [category, setCategory] = useState("")
   let [redirect, setRedirect] = useState(false)
   
 
@@ -32,6 +33,9 @@ const Edit = (props) => {
   let handleDrink = (e) => {
     setDrink(e.target.value)
   }
+  let handleCategory = (e) => {
+    setCategory(e.target.value)
+  }
 
   let handleSubmit = (e) => {
     e.preventDefault();
@@ -44,6 +48,7 @@ const Edit = (props) => {
         smoke: smoke,
         location: location,
         about: about,
+        category: category,
         id: props.user.id 
       } 
 
@@ -102,6 +107,10 @@ const Edit = (props) => {
               <div className="form-group">
                 <label htmlFor="drink">Drink</label>
                 <input type="text" name="drink" value={drink} onChange={handleDrink} className="form-control" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="category">Category</label>
+                <input type="text" name="category" value={category} onChange={handleCategory} className="form-control" />
               </div>
               <button type="submit" className="btn btn-primary float-right">Submit</button>
             </form>

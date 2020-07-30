@@ -27,6 +27,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 function App() {
 
+
   let [currentUser, setCurrentUser] = useState("")
   let [isAuthenticated, setIsAuthenticated] = useState(true)
 
@@ -61,10 +62,11 @@ function App() {
 
 
   const data = {
-          imgUrl: "http://placekitten.com/300/200", 
-          name: "Luke Myers! " ,
-          phone:"Looking for friends that like computers. I am a new software engineer and like friends that can code !",
-          date: "July 17th, 2020",
+          avatar: "", 
+          name: "" ,
+          location:"",
+          categories: "",
+          about: ""
   }
 
   return (
