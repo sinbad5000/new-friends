@@ -5,7 +5,7 @@ import setAuthToken from './content/utils/setAuthToken';
 import './App.css';
 import Profile from './content/components/Profile'
 import Welcome from './Welcome'
-import Main from './Main'
+import Main from './content/components/Main'
 import Request from './content/components/Request'
 import Friends from './Friends' 
 import Navbar from './content/components/Navbar'

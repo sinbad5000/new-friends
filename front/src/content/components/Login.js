@@ -45,7 +45,7 @@ const Login = (props) => {
 
   return (
     <div className="signupSigninBackground">
-    <div id="login">
+      <div id="login">
         <div className="col-md-7 offset-md-3">
           <div className="card card-body">
             {/* <h2 className="py-2">Login</h2> */}
@@ -63,9 +63,9 @@ const Login = (props) => {
           </div>
         </div>
       </div>
-      </div>
-      
-    )
+    </div>
+
+  )
 }
 
 export default Login;

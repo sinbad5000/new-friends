@@ -6,41 +6,29 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const passport = require("passport")
 require('dotenv').config()
-//load user model
-const User = require("../../models/User")
-//load category model
-const Category = require("../../models/Category")
+const User = require("../../Models/User")
+const Category = require("../../Models/Category")
 
-
-
-//TODO: organize routes using 'controllers'
-//FIXME: change test routes to actual routes
-
-
-// test route for specific user 
 router.get("/test/profile", function (req, res) {
-    User.findOne({'_id': req.user._id})
-    .then( results => {
-        res.json(results)
-        console.log('It worked!')
-    }).catch( err => {
-        console.log(err)
-    })
+    User.findOne({ '_id': req.user._id })
+        .then(results => {
+            res.json(results)
+            console.log('It worked!')
+        }).catch(err => {
+            console.log(err)
+        })
 })
 var mongo = require('mongodb');
 var o_id = new mongo.ObjectId("5f1f5928ee86e14d2a83d3cc");
 
-
-// test users
 router.get("/test", function (req, res) {
     User.find(
         {},
-    ).then( results => {
+    ).then(results => {
         res.json(results)
-    }).catch(err => console.log(err))   
+    }).catch(err => console.log(err))
 })
 
-// GET friends test route
 router.get("/test/friends", function (req, res) {
     User.getFriends(req.body.user, function (err, friendships) {
         if (err) {
@@ -49,11 +37,11 @@ router.get("/test/friends", function (req, res) {
             res.json(friendships)
         }
     })
-} )
+})
 
 router.get("/test/removefriend", function (req, res) {
-    User.removeFriend(req.body.userA, req.body.userB, function(err) {
-        if (err) { 
+    User.removeFriend(req.body.userA, req.body.userB, function (err) {
+        if (err) {
             console.log(err);
         } else {
             res.json(req.body.userA)
@@ -61,53 +49,39 @@ router.get("/test/removefriend", function (req, res) {
     })
 })
 
-
-
-
-
 router.get("/profile", passport.authenticate("jwt", { session: false }), (req, res) => {
-
-    console.log("inside profile route", req.user) 
-
-    User.findOne({'_id': req.user.id})
-    .then( results => {
-        res.json(results)
-        console.log('It worked!')
-    }).catch( err => {
-        console.log(err)
-    }) 
-    
-  });
-
-
-
+    console.log("inside profile route", req.user)
+    User.findOne({ '_id': req.user.id })
+        .then(results => {
+            res.json(results)
+            console.log('It worked!')
+        }).catch(err => {
+            console.log(err)
+        })
+});
 
 router.put('/profile/edit', function (req, res) {
-
     console.log("inside edit body route", req.body)
     const update = {
         "$set": {
-          "age": req.body.age,
-          "location": req.body.location,
-          "languages": req.body.languages,
-          "drink": req.body.drink,
-          "smoke": req.body.smoke,
-          "about": req.body.about,
-          "category": req.body.category
+            "age": req.body.age,
+            "location": req.body.location,
+            "languages": req.body.languages,
+            "drink": req.body.drink,
+            "smoke": req.body.smoke,
+            "about": req.body.about,
+            "category": req.body.category
         }
-      }; 
-    User.findByIdAndUpdate({'_id': req.body.id}, update, function (err, result) {
+    };
+    User.findByIdAndUpdate({ '_id': req.body.id }, update, function (err, result) {
 
-        if(err) {
+        if (err) {
             res.send(err)
         } else {
             res.send(result)
         }
-    }) 
+    })
 })
- 
-
-
 
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {
@@ -128,7 +102,7 @@ router.post("/register", function (req, res) {
             })
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if (err) { 
+                    if (err) {
                         throw err
                     }
                     newUser.password = hash
@@ -160,25 +134,23 @@ router.post("/login", function (req, res) {
     })
 })
 
-//test friend request
-//add a friend
 router.post('/friendrequest', function (req, res) {
-    User.requestFriend(req.body.userA, req.body.userB, function(err) { 
-        if(err){
+    User.requestFriend(req.body.userA, req.body.userB, function (err) {
+        if (err) {
             console.log(err)
         } else {
             res.redirect('/api/users/test')
         }
     })
 })
-//show friend
+
 router.get('/friendrequest/:userId', function (req, res) {
     User.find(
-        {}, function(err, allUsers) {
+        {}, function (err, allUsers) {
             if (err) {
                 console.log(err)
             } else {
-                User.findById(req.params.userId, function(err, foundUser) {
+                User.findById(req.params.userId, function (err, foundUser) {
                     if (err) {
                         console.log(err)
                     } else {
@@ -196,10 +168,8 @@ router.get('/friendrequest/:userId', function (req, res) {
     )
 })
 
-
-//test categories
 router.get("/test/categories", function (req, res) {
-    res.json({ msg: "categories is working"})
+    res.json({ msg: "categories is working" })
 })
 
 router.post("/test/categories", function (req, res) {
@@ -211,10 +181,5 @@ router.post("/test/categories", function (req, res) {
         .then(category => res.json(category))
         .catch(err => console.log(err))
 })
-
-
-
-
-
 
 module.exports = router 
