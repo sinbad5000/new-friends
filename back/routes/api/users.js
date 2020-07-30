@@ -91,13 +91,7 @@ router.put('/profile/edit', function (req, res) {
     }) 
 })
  
-/* router.put("/profile/edit", function (req, res) {
-    User.updateOne(query, update).then(user => {
-       results => {
-          res.json(results)
-  }})}).catch(err => console.log(err)) */ 
-/*  var mongo = require('mongodb');
-var o_id = new mongo.ObjectId("5f1f5928ee86e14d2a83d3cc"); */
+
 
 
 router.post("/register", function (req, res) {

@@ -33,9 +33,9 @@ const Request = (props) => {
   
     // }
   
- */
+
 // -------------------------------------------------------------
-/* 
+
 
     return (
         <div className="newBodyBackground">
@@ -53,25 +53,17 @@ const Request = (props) => {
              <p>{props.blog.date}</p>  
              </div>
              <div className="mainboxouter">
-{/* Code to Add a New Friend ---------------------------------------- */}
 
-             {/* <div className={`film-list-filter ${filter === 'faves' ? 'is-active' : ''}`}
 
-           onClick={() => handleFilterClick('faves')}>
-              FAVES
-              <span className="section-count">0</span>
              
 
-          </div> */}
-{/* Code End for Adding new Friend ----------------------------------- */}
 
-
-             <img id="addbtn" src="https://i.imgur.com/iSV3icM.jpg" />
+/*              <img id="addbtn" src="https://i.imgur.com/iSV3icM.jpg" />
              </div>
              </section>
 </div>
         </div>
     );
 }; 
- */
+ 
 export default Request;

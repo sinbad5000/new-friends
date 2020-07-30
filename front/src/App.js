@@ -79,7 +79,7 @@ function App() {
         <Route exact path="/" component={Welcome} />
         <PrivateRoute path='/Profile' component={ Profile } user={currentUser} />
         <Route path="/Main" render={() => <Main blog={data} />} />  
-        <Route path="/Request" render={() => <Request blog={data} />} /> 
+        <Route path="/Requests" render={() => <Request blog={data} />} /> 
         <Route path="/Friends" render={() => <Friends blog={data} />} /> 
         <Route path='/Login' render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} /> } />
         <Route path="/Signup" component={Signup} /> 
