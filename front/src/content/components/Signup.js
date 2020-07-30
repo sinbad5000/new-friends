@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 const Signup = () => {
   let [name, setName] = useState('')

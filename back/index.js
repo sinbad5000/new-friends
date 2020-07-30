@@ -7,7 +7,7 @@ const bodyParser = require("body-parser")
 const app = express()
 require('dotenv').config()
 
-const users = require("./routes/api/users")
+const User = require("./routes/api/users")
 
 app.use(function(req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*")
@@ -29,7 +29,7 @@ client.connect(err => {
   client.close();
 });
 
-mongoose.connect( uri, {useNewUrlParser: true} ).then((()=>console.log("Mongo is running "))).catch(err => console.log(err))
+mongoose.connect( uri).then((()=>console.log("Mongo is running on" ))).catch(err => console.log(err))
 
 app.get("/", function(req, res){
     res.send("hello, World!\nServer is up and running")
@@ -39,6 +39,8 @@ app.use(passport.initialize())
 
 require("./config/passport")(passport)
 
-app.use("/api/users", users)
+//setup our routes
+
+app.use("/api/users", User)
 
 app.listen(process.env.PORT || 3001, () => console.log(`server is running on ${process.env.PORT}`))
