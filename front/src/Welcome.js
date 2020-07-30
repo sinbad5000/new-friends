@@ -7,9 +7,9 @@ const welcome = () => {
     return (
     <div className="body">
         <section>
-            <div class="container">
-                <div class="background-img"> 
-                <div class="box">
+            <div className="container">
+                <div className="background-img"> 
+                <div className="box">
                         <span></span>
                         <span></span>
                         <span></span>

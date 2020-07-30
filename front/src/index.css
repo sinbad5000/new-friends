@@ -215,24 +215,7 @@ justify-content: center;
   left: 0; 
 }
 
-/* .player-wrapper {
-  position: relative;
-  padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) 
-}*/
- /*
-.react-player {
-  position: absolute;
-  top: 0;
-  left: 0;
-} */
 
- /* #welcome{
-position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: -1;
-
-}  */
 
 .newBodyBackground {
 background-image: url("https://www.maven-infotech.com/wp-content/uploads/2020/01/119059.jpg");
