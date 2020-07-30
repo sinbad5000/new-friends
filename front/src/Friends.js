@@ -4,11 +4,13 @@ import ProfileChat from './content/components/ProfileChat'
 
 const Friends = (props) => {
     return (
+        <div className="newBodyBackground">
         <div>
             <h1 className="chatheader"> Friend Matches </h1>
             <FriendsCarousel blog={props.blog} />
             <h1 className="chatheader"> Conversations </h1>
             <ProfileChat blog={props.blog}/>
+        </div>
         </div>
     );
 };

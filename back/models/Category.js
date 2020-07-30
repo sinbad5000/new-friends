@@ -8,9 +8,8 @@ const CategorySchema = new Schema({
     },
     users: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: "User"
     }]
   });
 
   module.exports = Category = mongoose.model("categories", CategorySchema) 
-

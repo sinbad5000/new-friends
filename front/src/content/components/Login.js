@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utils/setAuthToken';
@@ -29,6 +29,7 @@ const Login = (props) => {
         const { token } = res.data;
         // Save to LocalStorage
         localStorage.setItem('jwtToken', token);
+        console.log(token, "this should be a token")
         // Set token to Auth Header
         setAuthToken(token);
         // Decode token to get user data
@@ -42,11 +43,12 @@ const Login = (props) => {
   if (props.user) return <Redirect to="./Profile" user={props.user} />
 
   return (
-      <div className="row mt-4">
+    <div className="signupSigninBackground">
+    <div id="login">
         <div className="col-md-7 offset-md-3">
           <div className="card card-body">
-            <h2 className="py-2">Login</h2>
-            <form onSubmit={handleSubmit}>
+            {/* <h2 className="py-2">Login</h2> */}
+            <form id="loginForm" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" value={email} onChange={handleEmail} className="form-control" required />
@@ -55,11 +57,13 @@ const Login = (props) => {
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" value={password} onChange={handlePassword} className="form-control" required />
               </div>
-              <button type="submit" className="btn btn-primary float-right">Submit</button>
+              <button id="btn2" type="submit" className="btn btn-primary float-right">Log In</button>
             </form>
           </div>
         </div>
       </div>
+      </div>
+      
     )
 }
 
