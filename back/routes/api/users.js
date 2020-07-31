@@ -9,19 +9,8 @@ const passport = require("passport")
 const User = require("../../models/User")
 //load category model
 const Category = require("../../models/Category")
-<<<<<<< HEAD
-
-
-
 //TODO: organize routes using 'controllers'
 //FIXME: change test routes to actual routes
-
-
-
-=======
-//TODO: organize routes using 'controllers'
-//FIXME: change test routes to actual routes
->>>>>>> 076e9bad1fdc211f3d65da2e64b1d65683e45dc4
 // test users
 router.get("/", function (req, res) {
     User.find(
@@ -30,44 +19,6 @@ router.get("/", function (req, res) {
         res.json(results)
     }).catch(err => console.log(err))
 })
-<<<<<<< HEAD
-
-router.get("/test/friends", function (req, res) {
-    User.getFriends(req.body.user, function (err, friendships) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(friendships)
-        }
-    })
-})
-
-router.get("/test/removefriend", function (req, res) {
-    User.removeFriend(req.body.userA, req.body.userB, function(err) {
-        if (err) { 
-            console.log(err);
-        } else {
-            res.json(req.body.userA)
-        }
-    })
-})
-
-
-
-
-
-router.get("/profile", passport.authenticate("jwt", { session: false }), (req, res) => {
-    console.log("inside profile route", req.user)
-    User.findOne({ '_id': req.user.id })
-        .then(results => {
-            res.json(results)
-            console.log('It worked!')
-        }).catch(err => {
-            console.log(err)
-        })
-});
-
-=======
 // GET friends test route
 // router.get("/friends", function (req, res) {
 //     User.getAcceptedFriends(req.body.user, function (err, friendships) {
@@ -98,7 +49,6 @@ router.get("/profile", passport.authenticate("jwt", { session: false }), (req, r
         console.log(err)
     }) 
   });
->>>>>>> 076e9bad1fdc211f3d65da2e64b1d65683e45dc4
 router.put('/profile/edit', function (req, res) {
     console.log("inside edit body route", req.body)
     const update = {
@@ -111,29 +61,15 @@ router.put('/profile/edit', function (req, res) {
             "about": req.body.about,
             "category": req.body.category
         }
-<<<<<<< HEAD
-    };
-    User.findByIdAndUpdate({ '_id': req.body.id }, update, function (err, result) {
-
-        if (err) {
-=======
       }; 
     User.findByIdAndUpdate({'_id': req.body.id}, update, function (err, result) {
         if(err) {
->>>>>>> 076e9bad1fdc211f3d65da2e64b1d65683e45dc4
             res.send(err)
         } else {
             res.send(result)
         }
     })
 })
-<<<<<<< HEAD
- 
-
-
-
-=======
->>>>>>> 076e9bad1fdc211f3d65da2e64b1d65683e45dc4
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {
         if (user) {
@@ -181,17 +117,9 @@ router.post("/login", function (req, res) {
         })
     })
 })
-<<<<<<< HEAD
-
 //test friend request
 //add a friend
 router.post('/friendrequest', function (req, res) {
-    
-=======
-//test friend request
-//add a friend
-router.post('/friendrequest', function (req, res) {
->>>>>>> 076e9bad1fdc211f3d65da2e64b1d65683e45dc4
     User.requestFriend(req.body.requestingUserId, req.body.requestedUserId, function(err) { 
         if(err){
             console.log(err)
@@ -200,33 +128,6 @@ router.post('/friendrequest', function (req, res) {
         }
     })
 })
-<<<<<<< HEAD
-
-router.get('/friendrequest/:userId', function (req, res) {
-    User.find(
-        {}, function (err, allUsers) {
-            if (err) {
-                console.log(err)
-            } else {
-                User.findById(req.params.userId, function (err, foundUser) {
-                    if (err) {
-                        console.log(err)
-                    } else {
-                        User.getFriends(foundUser, function (err, friendships) {
-                            if (err) {
-                                console.log(err)
-                            } else {
-                                res.json(friendships)
-                            }
-                        })
-                    }
-                })
-            }
-        }
-    )
-})
-
-=======
 //show friend
 // router.get('/friendrequest/:userId', function (req, res) {
 //     User.find(
@@ -252,7 +153,6 @@ router.get('/friendrequest/:userId', function (req, res) {
 //     )
 // })
 //test categories
->>>>>>> 076e9bad1fdc211f3d65da2e64b1d65683e45dc4
 router.get("/test/categories", function (req, res) {
     res.json({ msg: "categories is working" })
 })
