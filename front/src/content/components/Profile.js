@@ -18,7 +18,7 @@ const Profile = (props) => {
 
   useEffect(() => {
     let token = localStorage.getItem("jwtToken")
-    console.log('this is the token ++++', token) 
+    // console.log('this is the token ++++', token) 
     axios.get(`${process.env.REACT_APP_API}/api/users/profile`, {headers: {Authorization: `Bearer ${token}`}})
     .then ( response => {
       console.log("here is the profile route data", response)

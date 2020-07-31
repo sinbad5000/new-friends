@@ -6,8 +6,8 @@ import axios from 'axios'
 
 const AcceptedCard = (props) => {
 
-  console.log("🦖🦕 this is props user", props.user.name, props.user.id)
-  console.log("🥭🍔 this is props accepted friends", props.friend.name, props.friend._id)
+  // console.log("🦖🦕 this is props user", props.user.name, props.user.id)
+  // console.log("🥭🍔 this is props accepted friends", props.friend.name, props.friend._id)
 
   // const acceptHandler = () => {
   //   console.log("This is the current user's ID", props.user.name, props.user.id)
