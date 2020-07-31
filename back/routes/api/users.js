@@ -16,22 +16,10 @@ const Category = require("../../models/Category")
 //FIXME: change test routes to actual routes
 
 
-// test route for specific user 
-router.get("/test/profile", function (req, res) {
-    User.findOne({'_id': req.user._id})
-    .then( results => {
-        res.json(results)
-        console.log('It worked!')
-    }).catch( err => {
-        console.log(err)
-    })
-})
-var mongo = require('mongodb');
-var o_id = new mongo.ObjectId("5f1f5928ee86e14d2a83d3cc");
 
 
 // test users
-router.get("/test", function (req, res) {
+router.get("/", function (req, res) {
     User.find(
         {},
     ).then( results => {
@@ -256,6 +244,18 @@ router.get("/friendRequests", passport.authenticate("jwt", { session: false }), 
     
 });
 
+// test route for specific user 
+router.get("/test/profile", function (req, res) {
+    User.findOne({'_id': req.user._id})
+    .then( results => {
+        res.json(results)
+        console.log('It worked!')
+    }).catch( err => {
+        console.log(err)
+    })
+})
+var mongo = require('mongodb');
+var o_id = new mongo.ObjectId("5f1f5928ee86e14d2a83d3cc");
 
 
 

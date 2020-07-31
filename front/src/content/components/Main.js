@@ -16,7 +16,7 @@ const Main = (props) => {
     let [allUsersArray, setAllUsersArray] = useState([])
 
     useEffect( () => {
-        Axios.get(`${process.env.REACT_APP_API}/api/users/test`)
+        Axios.get(`${process.env.REACT_APP_API}/api/users/`)
         .then(allUsers => {
             console.log('these are all the users', allUsers.data)
             setAllUsersArray(allUsers.data)
@@ -26,7 +26,14 @@ const Main = (props) => {
     , [])
 
     const mappedUsers = allUsersArray.map( (user) => {
-        return (<div key={user._id}> <UserCard user={ user } /></div>)
+        return (
+            <div key={user._id}> 
+                <UserCard user={ user } />
+                <button>
+                    
+                </button>
+            </div>
+        )
     })
 
     return ( 
