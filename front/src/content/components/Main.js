@@ -7,8 +7,13 @@ import Lonely from "./Lonely"
 const Main = (props) => {
     let [allUsersArray, setAllUsersArray] = useState([])
 
+    let handleClick = () => {
+
+        Axios.post(`${process.env.REACT_APP_API}/api/users/friendRequests`,)
+    }
+
     useEffect(() => {
-        Axios.get(`${process.env.REACT_APP_API}/api/users/test`)
+        Axios.get(`${process.env.REACT_APP_API}/api/users/`)
             .then(allUsers => {
                 setAllUsersArray(allUsers.data)
             })
@@ -28,14 +33,10 @@ const Main = (props) => {
     return (
         <div   >
             <div >
-
                 {allUsersArray[0] ? (
-
                     <div className="newBodyBackground">
                         <section className="mainboxouter">
-
                             {mappedUsers}
-
                         </section>
                     </div>
                 ) : (

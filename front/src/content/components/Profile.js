@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Profile = (props) => {
+  
 
   let [smoke, setSmoke] = useState('')
   let [drink, setDrink] = useState('')
@@ -14,18 +15,20 @@ const Profile = (props) => {
 
   useEffect(() => {
     let token = localStorage.getItem("jwtToken")
-    axios.get(`${process.env.REACT_APP_API}/api/users/profile`, { headers: { Authorization: token } })
-      .then(response => {
-        console.log(response)
-        setSmoke(response.data.smoke)
-        setAbout(response.data.about)
-        setLanguages(response.data.languages)
-        setDrink(response.data.drink)
-        setAge(response.data.age)
-        setLocation(response.data.location)
-        setCategory(response.data.category)
-      }).catch(err => console.log(err))
+    console.log('this is the token ++++', token) 
+    axios.get(`${process.env.REACT_APP_API}/api/users/profile`, {headers: {Authorization: `Bearer ${token}`}})
+    .then ( response => {
+      console.log("here is the profile route data", response)
+      setSmoke(response.data.smoke)
+      setAbout(response.data.about)
+      setLanguages(response.data.languages)
+      setDrink(response.data.drink)
+      setAge(response.data.age)
+      setLocation(response.data.location)
+      setCategory(response.data.category)
+    }).catch(err => console.log(err))
   }, [])
+  
   let userData = props.user
     ? <div>
       <h1>Profile</h1>

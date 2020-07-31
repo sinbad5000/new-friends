@@ -7,7 +7,7 @@ const Person = ({ person, modifySuperficialChoices }) => {
     <>
       <div className="person">
         <div className="person-photo">
-          // gravtar goes here
+        // gravtar goes here
         </div>
 
         <div className="person-description">
