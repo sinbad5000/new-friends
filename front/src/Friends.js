@@ -7,7 +7,7 @@ const Friends = (props) => {
         <div className="newBodyBackground">
         <div>
             <h1 className="chatheader"> Friend Matches </h1>
-            <FriendsCarousel blog={props.blog} />
+            {/* <FriendsCarousel blog={props.blog} /> */}
             <h1 className="chatheader"> Conversations </h1>
             <ProfileChat blog={props.blog}/>
         </div>

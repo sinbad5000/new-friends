@@ -30,7 +30,7 @@ const FriendCard = ({user, friend}) => {
     <div id="profileCard">
       <img id="lessbtn" src="https://i.imgur.com/19kt8Pv.jpg" />
       <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src="https://i.imgur.com/HS3dlA3.jpg" />
+  <Card.Img variant="top" src={`${friend.avatar}`} />
   <Card.Body>
     <Card.Title>{friend.name}</Card.Title>
     <Card.Text>
@@ -50,16 +50,3 @@ const FriendCard = ({user, friend}) => {
 
 export default FriendCard;
 
-
-
-{/* //     <h2>User Profile Card</h2>
-        //     <div class="card">
-        //       <img src="https://i.imgur.com/HS3dlA3.jpg" alt="John" style="width:100%" />
-        //       <h1>John Doe</h1>
-        //       <p class="title">CEO & Founder, Example</p>
-        //       <p>Harvard University</p>
-        //       <div >
-                
-        //     </div>
-        //     <p><button>Contact</button></p>
-        // </div> */}
