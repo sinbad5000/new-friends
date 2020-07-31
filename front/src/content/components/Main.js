@@ -1,49 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import UserCard from './UserCard'
-import Lonely from "./Lonely"
+// import Button from 'react-bootstrap/Button';
+// import {BrowserRouter as Router,Route, Link} from 'react-router-dom'
+// import Navbar from './content/components/Navbar'
+// import { NavLink } from 'react-router-dom'
+// import Friends from './Friends' 
+// import Request from './content/components/Request'
+// import Profile from'./content/components/Profile'
+// import LikeProfile from './content/components/LikeProfile'
+import FriendCard from './FriendCard'
 
 
 const Main = (props) => {
-    let [allUsersArray, setAllUsersArray] = useState([])
+
+    let [allFriendsArray, setAllFriendsArray] = useState([])
 
     let handleClick = () => {
-
-        Axios.post(`${process.env.REACT_APP_API}/api/users/friendRequests`,)
+        
+        Axios.post(`${process.env.REACT_APP_API}/api/users/friendRequests`, )
     }
 
-    useEffect(() => {
-        Axios.get(`${process.env.REACT_APP_API}/api/users/`)
-            .then(allUsers => {
-                setAllUsersArray(allUsers.data)
-            })
-            .catch(err => console.log(err))
+    useEffect( () => {
+        Axios.get(`${process.env.REACT_APP_API}/api/users`)
+        .then(allFriends => {
+            console.log('these are all the users', allFriends.data)
+            setAllFriendsArray(allFriends.data)
+        })
+        .catch(err => console.log(err))
     }
         , [])
 
-    const mappedUsers = allUsersArray.map((user) => {
+    const mappedFriends = allFriendsArray.map((friend) => {
         return (
-            <div key={user._id}>
-                <img id="lessbtn" src="https://i.imgur.com/19kt8Pv.jpg" />
-                <UserCard user={user} />
-                <img id="addbtn" src="https://i.imgur.com/iSV3icM.jpg" />
+            <div key={friend._id}>
+                <FriendCard friend={friend} user={props.user} />
             </div>)
     })
-
     return (
-        <div   >
             <div >
-                {allUsersArray[0] ? (
-                    <div className="newBodyBackground">
+                <div className="newBodyBackground">
                         <section className="mainboxouter">
-                            {mappedUsers}
+                            {mappedFriends}
+
                         </section>
                     </div>
-                ) : (
-                        <Lonely />
-                    )}
             </div>
-        </div>
     )
 }
 
