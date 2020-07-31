@@ -1,26 +1,26 @@
-
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import UserCard from './UserCard';
+import FriendCard from './FriendCard';
 
 const Request = (props) => {
+
     let [friendRequests, setFriendRequests] = useState([])
 
-    useEffect(() => {
+    useEffect( () => {
         let token = localStorage.getItem("jwtToken")
-        Axios.get(`${process.env.REACT_APP_API}/api/users/friendRequests`, { headers: { Authorization: `Bearer ${token}` } })
-            .then(allRequests => {
-                console.log('these are all the requests', allRequests.data)
-                setFriendRequests(allRequests.data)
-            })
-            .catch(err => console.log(err))
+        Axios.get(`${process.env.REACT_APP_API}/api/users/friendRequests`, {headers: {Authorization: `Bearer ${token}`}})
+        .then(allRequests => {
+            console.log('these are all the requests', allRequests.data)
+            setFriendRequests(allRequests.data)
+        })
+        .catch(err => console.log(err))
     }
-        , [])
-
-    const mappedFriendRequests = friendRequests.map((request) => {
-        return (
-            <div key={request.friend._id}>
-                {request.friend.name}
+    , [])
+    
+    const mappedFriendRequests = friendRequests.map( (friend) => {
+        return(
+            <div key={friend.friend._id}>
+                <FriendCard friend={friend} user={props.user} />
             </div>
         )
     })
@@ -53,6 +53,6 @@ const Request = (props) => {
 
         </div>
     )
-}
+} 
 
 export default Request;

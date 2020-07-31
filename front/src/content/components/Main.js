@@ -2,15 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import FriendCard from './FriendCard'
 
-
 const Main = (props) => {
 
     let [allFriendsArray, setAllFriendsArray] = useState([])
-
-    let handleClick = () => {
-        
-        Axios.post(`${process.env.REACT_APP_API}/api/users/friendRequests`, )
-    }
 
     useEffect( () => {
         Axios.get(`${process.env.REACT_APP_API}/api/users`)
@@ -40,4 +34,4 @@ const Main = (props) => {
     )
 }
 
-export default Main
+export default Main;

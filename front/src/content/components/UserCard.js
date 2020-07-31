@@ -2,8 +2,20 @@ import React from 'react';
 import Card from 'react-bootstrap/Card'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import ListGroup from 'react-bootstrap/ListGroup'
+import axios from 'axios'
 
 const UserCard = (props) => {
+  let handleClick = (e) => {
+    const newRequestIds = {
+        requestingUser: props.user.id,
+        userRequested: e.target.value
+    }
+    axios.post(`${process.env.REACT_APP_API}/api/users/friendRequests`, newRequestIds)
+    .then(res => {
+        console.log(newRequestIds)
+    })
+}
+
   return (
 
     <div id="profileCard">
