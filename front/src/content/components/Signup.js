@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 const Signup = () => {
   let [name, setName] = useState('')
@@ -8,6 +8,7 @@ const Signup = () => {
   let [password, setPassword] = useState('')
   let [password2, setPassword2] = useState('')
   let [redirect, setRedirect] = useState(false)
+  require('dotenv').config()
 
   let handleName = (e) => {
     setName(e.target.value)

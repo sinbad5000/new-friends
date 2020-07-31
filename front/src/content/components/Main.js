@@ -15,6 +15,11 @@ const Main = (props) => {
 
     let [allFriendsArray, setAllFriendsArray] = useState([])
 
+    let handleClick = () => {
+        
+        Axios.post(`${process.env.REACT_APP_API}/api/users/friendRequests`, )
+    }
+
     useEffect( () => {
         Axios.get(`${process.env.REACT_APP_API}/api/users`)
         .then(allFriends => {

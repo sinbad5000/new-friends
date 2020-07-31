@@ -67,4 +67,4 @@ const UserSchema = new Schema({
 
   UserSchema.plugin(friends())
 
-  module.exports = User = mongoose.model("users", UserSchema);
+  module.exports = mongoose.model("User", UserSchema);

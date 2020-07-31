@@ -155,7 +155,7 @@ router.post('/friendrequest', function (req, res) {
         if(err){
             console.log(err)
         } else {
-            res.redirect('/api/users')
+            res.redirect('/api/users/')
         }
     })
 })
