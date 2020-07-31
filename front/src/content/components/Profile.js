@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Profile = (props) => {
-  console.log("user data in profile", props.user)
   
 
   let [smoke, setSmoke] = useState('')
@@ -19,10 +18,10 @@ const Profile = (props) => {
 
   useEffect(() => {
     let token = localStorage.getItem("jwtToken")
-    console.log(token, "heloooooooo") 
+    console.log('this is the token ++++', token) 
     axios.get(`${process.env.REACT_APP_API}/api/users/profile`, {headers: {Authorization: `Bearer ${token}`}})
     .then ( response => {
-      console.log("here is the profile route data", response.data)
+      console.log("here is the profile route data", response)
       setSmoke(response.data.smoke)
       setAbout(response.data.about)
       setLanguages(response.data.languages)
@@ -32,12 +31,12 @@ const Profile = (props) => {
       setCategory(response.data.category)
     }).catch(err => console.log(err))
   }, [])
+  
   let userData = props.user
     ? <div>
       <h1>Profile</h1>
       <img src={props.user.avatar} alt={props.user.name} className="mb-4" />
       <p><strong>Name:</strong> {props.user.name}</p>
-      {/*<p><strong>email:</strong> {props.user.email}</p>*/}
       <p><strong>Age:</strong> {age}</p>
       <p><strong>location:</strong> {location}</p>
       <p><strong>about:</strong> {about}</p>

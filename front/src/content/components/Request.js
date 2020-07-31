@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import Axios from 'axios';
 import UserCard from './UserCard';
 
 
@@ -9,48 +9,57 @@ import UserCard from './UserCard';
 
 const Request = (props) => {
 
-   let [friendRequests, setFriendsRequests] = useState([])
 
-    useEffect(() => {
+    let [friendRequests, setFriendRequests] = useState([])
+
+    useEffect( () => {
         let token = localStorage.getItem("jwtToken")
-        console.log(token, "jwtToken") 
-
-        axios.get(`${process.env.REACT_APP_API}/api/users/friendRequests/`, {headers: {Authorization: `Bearer ${token}`}})
-        .then ( allRequests => {
-            console.log("here is the friendrequest route data", allRequests.data)
-        }).catch(err => console.log(err))
-    }, [])
-
-    // const mappedFriendsRequests = friendsRequests.map( (request) => {
-    //     return (
-    //         <div key={request.friend._id}>
-    //             {request.friend.name}
-    //         </div>
-    //     )
-    // })
-    return (
-        <div className="newBodyBackground">
-        <div>
-            <section className="mainboxouter">  
-            <div>
-            <img id="lessbtn" src="https://i.imgur.com/19kt8Pv.jpg"  />  
+        Axios.get(`${process.env.REACT_APP_API}/api/users/friendRequests`, {headers: {Authorization: `Bearer ${token}`}})
+        .then(allRequests => {
+            console.log('these are all the requests', allRequests.data)
+            setFriendRequests(allRequests.data)
+        })
+        .catch(err => console.log(err))
+    }
+    , [])
+    
+    const mappedFriendRequests = friendRequests.map( (request) => {
+        return(
+            <div key={request.friend._id}>
+                {request.friend.name}
             </div>
-            <div id="mainbox">
-            <UserCard />
-              {/* <img id="mainpic" src={`${props.blog.imgUrl}`} alt="face of a person" />  */}
-                <img id="logo" src="https://i.imgur.com/i6FmYyB.jpg"/>
-                 <h3>{props.blog.name}</h3>
-              <p>{props.blog.phone}</p>
-             <p>{props.blog.date}</p>  
-             
-             </div>
-             <div className="mainboxouter">
-             <img id="addbtn" src="https://i.imgur.com/iSV3icM.jpg" />
-             </div>
-             </section>
-</div>
+        )
+    })
+
+    // const [faves, setFaves]  = useState([]);
+    // const [filter, setFilter] = useState('all');
+    // const handleFilterClick = filter => {
+    //   setFilter(filter)
+
+    // }
+
+    // const onFaveToggle = () => {
+    //   let newFaves = [...faves];
+    //   let faveIndex = faves.indexOf(film);
+    //   //check is a film is i the faves
+    //   if (faveIndex >= 0) {
+    //     newFaves.splice(faveIndex, 1);
+    //   } else {
+    //     //else put in array
+    //     newFaves =  [...newFaves, film];
+    //   }
+    //    set faves (newFaves)
+
+    // }
+
+
+    return (
+        <div>
+            <h2>Friend Requests</h2>
+            {mappedFriendRequests}
+
         </div>
-    );
-}; 
- 
+    )
+} 
+
 export default Request;

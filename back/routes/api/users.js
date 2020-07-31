@@ -15,19 +15,10 @@ var mongo = require('mongodb');
 //FIXME: change test routes to actual routes
 
 
-// test route for specific user 
-router.get("/test/profile", function (req, res) {
-    User.findOne({'_id': req.user._id})
-    .then( results => {
-        res.json(results)
-        console.log('It worked!')
-    }).catch( err => {
-        console.log(err)
-    })
-})
+
 
 // test users
-router.get("/test", function (req, res) {
+router.get("/", function (req, res) {
     User.find(
         {},
     ).then( results => {
@@ -224,6 +215,67 @@ router.post("/test/categories", function (req, res) {
         .then(category => res.json(category))
         .catch(err => console.log(err))
 })
+
+
+
+
+router.get("/friendRequests", passport.authenticate("jwt", { session: false }), (req, res) => {
+
+    console.log("inside profile route", req.user) 
+
+    User.findOne({'_id': req.user.id}, function(err, foundUser) {
+        if (err) {
+            console.log("We've got an error finding this user", err)
+        } else {
+            User.getPendingFriends(foundUser, function(err, friendships) {
+                console.log(friendships)
+                res.json(friendships)
+                
+            })
+            // User.getFriends(foundUser, function(err, friendships) {
+            //     console.log(friendships)
+            //     res.json(friendships)
+            // })
+        }
+    })
+    // .then( results => {
+    //     console.log("These are the RESULTS!!!", results)
+    //     res.json(results)
+
+    //     // User.findById(req.params.userId, function(err, foundUser) {
+    //     //     if (err) {
+    //     //         console.log(err)
+    //     //     } else {
+    //     //         User.getFriends(foundUser, function (err, friendships) {
+    //     //             if (err) {
+    //     //                 console.log(err)
+    //     //             } else {
+    //     //                 res.json(friendships)
+    //     //             }
+    //     //         })
+    //     //     }
+        
+
+    // }).catch( err => {
+    //     console.log(err)
+    // }) 
+    
+});
+
+// test route for specific user 
+router.get("/test/profile", function (req, res) {
+    User.findOne({'_id': req.user._id})
+    .then( results => {
+        res.json(results)
+        console.log('It worked!')
+    }).catch( err => {
+        console.log(err)
+    })
+})
+var mongo = require('mongodb');
+var o_id = new mongo.ObjectId("5f1f5928ee86e14d2a83d3cc");
+
+
 
 
 module.exports = router 

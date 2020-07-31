@@ -13,7 +13,7 @@ const Main = (props) => {
     }
 
     useEffect( () => {
-        Axios.get(`${process.env.REACT_APP_API}/api/users/test`)
+        Axios.get(`${process.env.REACT_APP_API}/api/users/`)
         .then(allUsers => {
             console.log('these are all the users', allUsers.data)
             setAllUsersArray(allUsers.data)
@@ -24,7 +24,14 @@ const Main = (props) => {
 
 
     const mappedUsers = allUsersArray.map( (user) => {
-        return (<div key={user._id}> <UserCard user={ user } /></div>)
+        return (
+            <div key={user._id}> 
+                <UserCard user={ user } />
+                <button>
+                    
+                </button>
+            </div>
+        )
     })
 
     return ( 
@@ -36,12 +43,6 @@ const Main = (props) => {
                 </div>
                 <div id="mainbox">
                     {mappedUsers}
-                    <UserCard />
-                     {/* <h2> </h2>
-                    <img id="mainpic" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
-                    <h3>{props.blog.name}</h3>
-                    <p>{props.blog.phone}</p>
-                    <p>{props.blog.date}</p>    */}
                     <img id="logo" src="https://i.imgur.com/i6FmYyB.jpg"/>
                 </div>
                 <div className="mainboxouter">
