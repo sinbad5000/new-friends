@@ -7,7 +7,7 @@ import Profile from './content/components/Profile'
 import Welcome from './Welcome'
 import Main from './content/components/Main'
 import Request from './content/components/Request'
-import Friends from './Friends' 
+import Friends from './content/components/Friends' 
 import Navbar from './content/components/Navbar'
 import Login from './content/components/Login'
 import Signup from './content/components/Signup'
@@ -78,8 +78,8 @@ function App() {
       <div className="App">
         <Route exact path="/" component={Welcome} />
         <PrivateRoute path='/Profile' component={ Profile } user={currentUser} />
-        <Route path="/Main" render={() => <Main blog={data} />} />  
-        <Route path="/Requests" render={() => <Request blog={data} />} /> 
+        <Route path="/Main" render={() => <Main blog={data} user={currentUser} />} />  
+        <Route path="/Requests" render={() => <Request blog={data} user={currentUser} />} /> 
         <Route path="/Friends" render={() => <Friends user={currentUser} />} /> 
         <Route path='/Login' render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} /> } />
         <Route path="/Signup" component={Signup} /> 
