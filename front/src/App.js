@@ -77,7 +77,7 @@ function App() {
       <div className="App">
         <Route exact path="/" component={Welcome} />
         <PrivateRoute path='/Profile' component={ Profile } user={currentUser} />
-        <Route path="/Main" render={() => <Main blog={data} />} />  
+        <Route path="/Main" render={() => <Main blog={data} user={currentUser} />} />  
         <Route path="/Requests" render={() => <Request blog={data} />} /> 
         <Route path="/Friends" render={() => <Friends blog={data} />} /> 
         <Route path='/Login' render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} /> } />

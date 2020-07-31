@@ -150,11 +150,12 @@ router.post("/login", function (req, res) {
 //test friend request
 //add a friend
 router.post('/friendrequest', function (req, res) {
-    User.requestFriend(req.body.userA, req.body.userB, function(err) { 
+    
+    User.requestFriend(req.body.requestingUserId, req.body.requestedUserId, function(err) { 
         if(err){
             console.log(err)
         } else {
-            res.redirect('/api/users/test')
+            res.redirect('/api/users')
         }
     })
 })
