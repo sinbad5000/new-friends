@@ -1,12 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import UserCard from './UserCard';
+
 
 // import LikeProfile from './content/components/LikeProfile'
 
-// Code to add Friend HERE from onlick of the + BUTTON 
 
 const Request = (props) => {
+
 
     let [friendRequests, setFriendRequests] = useState([])
 
@@ -50,13 +52,12 @@ const Request = (props) => {
 
     // }
 
-// -------------------------------------------------------------
-
 
     return (
         <div>
             <h2>Friend Requests</h2>
             {mappedFriendRequests}
+
         </div>
     )
 } 

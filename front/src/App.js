@@ -61,10 +61,11 @@ function App() {
 
 
   const data = {
-          imgUrl: "http://placekitten.com/300/200", 
-          name: "Luke Myers! " ,
-          phone:"Looking for friends that like computers. I am a new software engineer and like friends that can code !",
-          date: "July 17th, 2020",
+          avatar: "", 
+          name: "" ,
+          location:"",
+          categories: "",
+          about: ""
   }
 
   return (
@@ -79,7 +80,7 @@ function App() {
         <PrivateRoute path='/Profile' component={ Profile } user={currentUser} />
         <Route path="/Main" render={() => <Main blog={data} />} />  
         <Route path="/Requests" render={() => <Request blog={data} />} /> 
-        <Route path="/Friends" render={() => <Friends blog={data} />} /> 
+        <Route path="/Friends" render={() => <Friends user={currentUser} />} /> 
         <Route path='/Login' render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} /> } />
         <Route path="/Signup" component={Signup} /> 
         <Route path="/Edit" render={() => <Edit user={currentUser} />}  /> 
