@@ -7,7 +7,7 @@ import Col from  'react-bootstrap/Col'
 export default function Profile(props) {
     return (
         <>
-            <h1>Chat</h1>
+            {/* <h1>Chat</h1>
 
         <Container>
         <Row>
@@ -17,7 +17,7 @@ export default function Profile(props) {
             </Col>
             
         </Row>
-        </Container>
+        </Container> */}
         </>
     )
 }

@@ -10,7 +10,7 @@ const FriendsCarousel = (props) => {
     return (
         <div>
            <section className="mainboxouter">
-               
+{/*                
                  <div id="mainbox">
                     <img id="manyfriends" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
                 </div>
@@ -22,7 +22,7 @@ const FriendsCarousel = (props) => {
                 </div>
                 <div id="mainbox">
                     <img id="manyfriends" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
-                </div>
+                </div> */}
             </section>   
         </div>
     );
