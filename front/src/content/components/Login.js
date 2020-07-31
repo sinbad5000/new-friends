@@ -6,8 +6,8 @@ import { Redirect } from 'react-router-dom'
 require('dotenv').config()
 
 const Login = (props) => {
-  console.log('💔')
-  console.log(props)
+  // console.log('💔')
+  // console.log(props)
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
 

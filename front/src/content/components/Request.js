@@ -1,10 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import UserCard from './UserCard';
-
-
-// import LikeProfile from './content/components/LikeProfile'
+import RequestCard from './RequestCard';
 
 
 const Request = (props) => {
@@ -16,17 +13,17 @@ const Request = (props) => {
         let token = localStorage.getItem("jwtToken")
         Axios.get(`${process.env.REACT_APP_API}/api/users/friendRequests`, {headers: {Authorization: `Bearer ${token}`}})
         .then(allRequests => {
-            console.log('these are all the requests', allRequests.data)
+            console.log('🤠🤠🤠🤠these are all the requests', allRequests.data)
             setFriendRequests(allRequests.data)
         })
         .catch(err => console.log(err))
-    }
-    , [])
+    }, [])
     
     const mappedFriendRequests = friendRequests.map( (request) => {
         return(
             <div key={request.friend._id}>
-                {request.friend.name}
+                <RequestCard friend={request.friend} user={props.user} />
+                {/* {request.friend.name} */}
             </div>
         )
     })
