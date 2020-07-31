@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import FriendsCarousel from './content/components/FriendsCarousel'
 import ProfileChat from './content/components/ProfileChat'
 import axios from 'axios';
-import AcceptedCard from './AcceptedCard';
+import AcceptedCard from './content/components/AcceptedCard';
 
 const Friends = (props) => {
 
