@@ -49,7 +49,7 @@ client.connect(err => {
   client.close();
 });
 
-mongoose.connect( uri).then((()=>console.log("Mongo is running on" ))).catch(err => console.log(err))
+mongoose.connect( uri).then((()=>console.log("Mongo is running on", uri ))).catch(err => console.log(err))
 
 
 
