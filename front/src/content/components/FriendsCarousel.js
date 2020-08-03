@@ -1,28 +1,16 @@
 import React from 'react'
-
-
-
-
-
-
+import UserCard from './UserCard'
 
 const FriendsCarousel = (props) => {
     return (
         <div>
             <section className="mainboxouter">
-                <div id="mainbox">
-                    <img id="manyfriends" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
-                </div>
-                <div id="mainbox">
-                    <img id="manyfriends" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
-                </div>
-                <div id="mainbox">
-                    <img id="manyfriends" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
-                </div>
-                <div id="mainbox">
-                    <img id="manyfriends" src={`${props.blog.imgUrl}`} alt="face of a person" /> 
-                </div>
-            </section>   
+
+                <UserCard />
+                <UserCard />
+                <UserCard />
+                <UserCard />
+            </section>
         </div>
     );
 };

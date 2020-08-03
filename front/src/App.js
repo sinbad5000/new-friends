@@ -7,7 +7,7 @@ import Profile from './content/components/Profile'
 import Welcome from './Welcome'
 import Main from './content/components/Main'
 import Request from './content/components/Request'
-import Friends from './Friends' 
+import Friends from './content/components/Friends' 
 import Navbar from './content/components/Navbar'
 import Login from './content/components/Login'
 import Signup from './content/components/Signup'
@@ -16,9 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-
   const user = localStorage.getItem(`jwtToken`)
-
   return <Route {...rest} render={(props) => (
         user ? <Component {...rest} {...props} /> : <Redirect to='/login' />
       )} 
@@ -65,10 +63,6 @@ function App() {
     }
   }
 
-  // console.log('Current User = ', currentUser);
-  // console.log('Authenticated = ', isAuthenticated);
-
-
   const data = {
           avatar: "", 
           name: "" ,
@@ -93,7 +87,6 @@ function App() {
         <Route path='/Login' render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} /> } />
         <Route path="/Signup" component={Signup} /> 
         <Route path="/Edit" render={() => <Edit user={currentUser} />}  /> 
-
       </div>
     </Router>
   );

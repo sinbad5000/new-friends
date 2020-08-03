@@ -4,6 +4,7 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import ListGroup from 'react-bootstrap/ListGroup'
 import axios from 'axios'
 
+
 const FriendCard = (props) => {
 
   // console.log("😐 this is props user", props.user)
@@ -12,21 +13,16 @@ const FriendCard = (props) => {
   const acceptHandler = () => {
     console.log("This is the current user's ID", props.user.id)
     console.log("This is the friend's ID", props.friends._id)
-    
     let token = localStorage.getItem("jwtToken")
-
     const requestInfo = {
       requestingUserId: props.user.id,
       requestedUserId: props.friends._id
     }
-
     axios.post(`${process.env.REACT_APP_API}/api/users/friendrequest`, requestInfo, {headers: {Authorization: `Bearer ${token}`}})
     .then(results => console.log(results))
     .catch(err => console.log(err))
   }
-
   return (
-
     <div id="profileCard">
 
       <img id="lessbtn" src="https://i.imgur.com/19kt8Pv.jpg" />
@@ -51,6 +47,4 @@ const FriendCard = (props) => {
     </div>
   )
 }
-
 export default FriendCard;
-

@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import RequestCard from './RequestCard';
 
 
-const Request = (props) => {
 
+const Request = (props) => {
 
     let [friendRequests, setFriendRequests] = useState([])
 
@@ -19,11 +18,12 @@ const Request = (props) => {
         .catch(err => console.log(err))
     }, [])
     
-    const mappedFriendRequests = friendRequests.map( (request) => {
+    const mappedFriendRequests = friendRequests.map( (friend) => {
         return(
             <div key={request.friend._id}>
                 <RequestCard friend={request.friend} user={props.user} />
                 {/* {request.friend.name} */}
+
             </div>
         )
     })
@@ -48,7 +48,6 @@ const Request = (props) => {
     //    set faves (newFaves)
 
     // }
-
 
     return (
         <div>

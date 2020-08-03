@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Profile = (props) => {
-  
 
   let [smoke, setSmoke] = useState('')
   let [drink, setDrink] = useState('')
@@ -12,9 +11,6 @@ const Profile = (props) => {
   let [location, setLocation] = useState('')
   let [age, setAge] = useState('')
   let [category, setCategory] = useState('')
-  
-
-
 
   useEffect(() => {
     let token = localStorage.getItem("jwtToken")
@@ -30,8 +26,9 @@ const Profile = (props) => {
       setLocation(response.data.location)
       setCategory(response.data.category)
     }).catch(err => console.log(err))
+
   }, [])
-  
+
   let userData = props.user
     ? <div>
       <h1>Profile</h1>

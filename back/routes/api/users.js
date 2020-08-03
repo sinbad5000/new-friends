@@ -9,53 +9,38 @@ const passport = require("passport")
 const User = require("../../models/User")
 //load category model
 const Category = require("../../models/Category")
-
-
-
 //TODO: organize routes using 'controllers'
 //FIXME: change test routes to actual routes
-
-
-
-
 // test users
 router.get("/", function (req, res) {
     User.find(
         {},
-    ).then( results => {
+    ).then(results => {
         res.json(results)
-    }).catch(err => console.log(err))   
+    }).catch(err => console.log(err))
 })
-
 // GET friends test route
-router.get("/test/friends", function (req, res) {
-    User.getFriends(req.body.user, function (err, friendships) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(friendships)
-        }
-    })
-} )
+// router.get("/friends", function (req, res) {
+//     User.getAcceptedFriends(req.body.user, function (err, friendships) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             res.json(friendships)
+//         }
+//     })
+// } )
 
-router.get("/test/removefriend", function (req, res) {
-    User.removeFriend(req.body.userA, req.body.userB, function(err) {
-        if (err) { 
-            console.log(err);
-        } else {
-            res.json(req.body.userA)
-        }
-    })
-})
-
-
-
-
-
+// router.get("/test/removefriend", function (req, res) {
+//     User.removeFriend(req.body.userA, req.body.userB, function(err) {
+//         if (err) { 
+//             console.log(err);
+//         } else {
+//             res.json(req.body.userA)
+//         }
+//     })
+// })
 router.get("/profile", passport.authenticate("jwt", { session: false }), (req, res) => {
-
     console.log("inside profile route", req.user) 
-
     User.findOne({'_id': req.user.id})
     .then( results => {
         res.json(results)
@@ -63,42 +48,30 @@ router.get("/profile", passport.authenticate("jwt", { session: false }), (req, r
     }).catch( err => {
         console.log(err)
     }) 
-    
   });
-
-
-
-
 router.put('/profile/edit', function (req, res) {
-
     console.log("inside edit body route", req.body)
     const update = {
         "$set": {
-          "age": req.body.age,
-          "location": req.body.location,
-          "languages": req.body.languages,
-          "drink": req.body.drink,
-          "smoke": req.body.smoke,
-          "about": req.body.about,
-          "category": req.body.category
+            "age": req.body.age,
+            "location": req.body.location,
+            "languages": req.body.languages,
+            "drink": req.body.drink,
+            "smoke": req.body.smoke,
+            "about": req.body.about,
+            "category": req.body.category
         }
       }; 
     User.findByIdAndUpdate({'_id': req.body.id}, update, function (err, result) {
-
         if(err) {
             res.send(err)
         } else {
             res.send(result)
         }
-    }) 
+    })
 })
- 
-
-
-
 router.post("/register", function (req, res) {
     User.findOne({ email: req.body.email }).then(user => {
-
         if (user) {
             return res.status(400).json({ email: "email exits" })
         } else {
@@ -115,7 +88,7 @@ router.post("/register", function (req, res) {
             })
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if (err) { 
+                    if (err) {
                         throw err
                     }
                     newUser.password = hash
@@ -125,11 +98,9 @@ router.post("/register", function (req, res) {
         }
     })
 })
-
 router.post("/login", function (req, res) {
     const email = req.body.email
     const password = req.body.password
-
     User.findOne({ email }).then(user => {
         if (!user) {
             return res.status(400).json({ email: "user not found" })
@@ -146,11 +117,9 @@ router.post("/login", function (req, res) {
         })
     })
 })
-
 //test friend request
 //add a friend
 router.post('/friendrequest', function (req, res) {
-    
     User.requestFriend(req.body.requestingUserId, req.body.requestedUserId, function(err) { 
         if(err){
             console.log(err)
@@ -160,46 +129,79 @@ router.post('/friendrequest', function (req, res) {
     })
 })
 //show friend
-router.get('/friendrequest/:userId', function (req, res) {
-    User.find(
-        {}, function(err, allUsers) {
-            if (err) {
-                console.log(err)
-            } else {
-                User.findById(req.params.userId, function(err, foundUser) {
-                    if (err) {
-                        console.log(err)
-                    } else {
-                        User.getFriends(foundUser, function (err, friendships) {
-                            if (err) {
-                                console.log(err)
-                            } else {
-                                res.json(friendships)
-                            }
-                        })
-                    }
-                })
-            }
-        }
-    )
-})
-
-
+// router.get('/friendrequest/:userId', function (req, res) {
+//     User.find(
+//         {}, function(err, allUsers) {
+//             if (err) {
+//                 console.log(err)
+//             } else {
+//                 User.findById(req.params.userId, function(err, foundUser) {
+//                     if (err) {
+//                         console.log(err)
+//                     } else {
+//                         User.getFriends(foundUser, function (err, friendships) {
+//                             if (err) {
+//                                 console.log(err)
+//                             } else {
+//                                 res.json(friendships)
+//                             }
+//                         })
+//                     }
+//                 })
+//             }
+//         }
+//     )
+// })
 //test categories
 router.get("/test/categories", function (req, res) {
-    res.json({ msg: "categories is working"})
+    res.json({ msg: "categories is working" })
 })
-
 router.post("/test/categories", function (req, res) {
     const newCategory = new Category({
         name: req.body.name
     })
-
     newCategory.save()
         .then(category => res.json(category))
         .catch(err => console.log(err))
 })
+router.get("/friendRequests", passport.authenticate("jwt", { session: false }), (req, res) => {
+    console.log("inside profile route", req.user) 
+    User.findOne({'_id': req.user.id}, function(err, foundUser) {
+        if (err) {
+            console.log("We've got an error finding this user", err)
+        } else {
+            User.getPendingFriends(foundUser, function(err, friendships) {
+                console.log(friendships)
+                res.json(friendships)
+            })
+        }
+    })
 
+router.get('/friends', passport.authenticate('jwt', { session: false }), (req, res) => {
+    console.log("inside the friends route", req.user)
+    User.findOne({'_id': req.user.id}, function(err, foundUser) {
+        if (err) {
+            console.log("We've got an error finding this user", err)
+        } else {
+            User.getAcceptedFriends(foundUser, function(err, friendships) {
+                console.log(friendships)
+                res.json(friendships)
+            })
+        }
+    })
+    })
+});
+// test route for specific user 
+router.get("/test/profile", function (req, res) {
+    User.findOne({'_id': req.user._id})
+    .then( results => {
+        res.json(results)
+        console.log('It worked!')
+    }).catch( err => {
+        console.log(err)
+    })
+})
+var mongo = require('mongodb');
 
 
 router.get("/friendRequests", passport.authenticate("jwt", { session: false }), (req, res) => {

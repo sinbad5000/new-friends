@@ -41,33 +41,26 @@ app.use(bodyParser.json())
 
 const uri = process.env.MONGODB_URI
 
-const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+// const MongoClient = require('mongodb').MongoClient;
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
 
 mongoose.connect( uri).then((()=>console.log("Mongo is running on", uri ))).catch(err => console.log(err))
-
-
 
 app.get("/", function(req, res){
     res.send("hello, World!\nServer is up and running")
 })
 
-// passport middleware
 app.use(passport.initialize())
-
-// passport JWT token set/config
 
 require("./config/passport")(passport)
 
 //setup our routes
 
 app.use("/api/users", User)
-
-//start server
 
 app.listen(process.env.PORT || 3001, () => console.log(`server is running on ${process.env.PORT}`))
