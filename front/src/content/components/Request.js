@@ -18,7 +18,7 @@ const Request = (props) => {
         .catch(err => console.log(err))
     }, [])
     
-    const mappedFriendRequests = friendRequests.map( (friend) => {
+    const mappedFriendRequests = friendRequests.map( (request) => {
         return(
             <div key={request.friend._id}>
                 <RequestCard friend={request.friend} user={props.user} />

@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios'
 //import FriendCard from './FriendCard';
-import AcceptedFriends from './AcceptedFriends';
+import AcceptedCard from './AcceptedCard';
 
 const Friends = (props) => {
 
-    let [allAcceptedFriends, setAllAcceptedFriends] = useState([])
+    let [acceptedRequests, setAcceptedRequests] = useState([])
 
     useEffect( () => {
         let token = localStorage.getItem("jwtToken")
-        Axios.get(`${process.env.REACT_APP_API}/api/users/friends`, {headers: {Authorization: `Bearer ${token}`}})
-        .then(allRequests => {
-            console.log('these are all friends', allRequests.data)
-            setAllAcceptedFriends(allRequests.data)
+        Axios.get(`${process.env.REACT_APP_API}/api/users/acceptedRequests`, {headers: {Authorization: `Bearer ${token}`}})
+        .then(allAcceptedRequests => {
+            console.log('these are all accepted requests', allAcceptedRequests.data)
+            setAcceptedRequests(allAcceptedRequests.data)
         })
         .catch(err => console.log(err))
     }
     , [])
 
-    const mappedAllAcceptedFriends = allAcceptedFriends.map( (friend) => {
+    const mappedAcceptedRequests = acceptedRequests.map( (request) => {
         return(
-            <div key={friend.friend._id}>
-                <AcceptedFriends friend={friend} user={props.user} />
+            <div key={request.friend._id}>
+                <AcceptedCard friend={request.friend} user={props.user} />
             </div>
         )
     })
@@ -29,7 +29,7 @@ const Friends = (props) => {
     return (
         <div className="newBodyBackground">
         <div>
-            {mappedAllAcceptedFriends}
+            {mappedAcceptedRequests}
         </div>
         </div>
     );
