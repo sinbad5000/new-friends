@@ -5,7 +5,7 @@ import Login from './content/components/Login'
 
 const welcome = () => {
     return (
-    <div className="body">
+    <div /* className="body" */>
         <section>
             <div className="container">
                 <div className="background-img"> 
@@ -28,7 +28,7 @@ const welcome = () => {
     );
 };
 
-
+ 
 
 export default welcome;
 
